@@ -13,6 +13,12 @@
 		BE97912E25017DC700FF9D66 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE97912C25017DC700FF9D66 /* Main.storyboard */; };
 		BE97913025017DC900FF9D66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE97912F25017DC900FF9D66 /* Assets.xcassets */; };
 		BE97913325017DC900FF9D66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE97913125017DC900FF9D66 /* LaunchScreen.storyboard */; };
+		BE97913B2501809500FF9D66 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BE97913A2501809500FF9D66 /* Montserrat-Medium.ttf */; };
+		BE97913D2501821600FF9D66 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE97913C2501821600FF9D66 /* MainTabBarController.swift */; };
+		BE97913F250182B300FF9D66 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE97913E250182B300FF9D66 /* ExploreViewController.swift */; };
+		BE979141250182D200FF9D66 /* SavedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE979140250182D200FF9D66 /* SavedViewController.swift */; };
+		BE979143250182EB00FF9D66 /* AlertsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE979142250182EB00FF9D66 /* AlertsViewController.swift */; };
+		BE979145250182FB00FF9D66 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE979144250182FB00FF9D66 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +30,12 @@
 		BE97912F25017DC900FF9D66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE97913225017DC900FF9D66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BE97913425017DC900FF9D66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE97913A2501809500FF9D66 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
+		BE97913C2501821600FF9D66 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		BE97913E250182B300FF9D66 /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
+		BE979140250182D200FF9D66 /* SavedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedViewController.swift; sourceTree = "<group>"; };
+		BE979142250182EB00FF9D66 /* AlertsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsViewController.swift; sourceTree = "<group>"; };
+		BE979144250182FB00FF9D66 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +70,27 @@
 			children = (
 				BE97912625017DC700FF9D66 /* AppDelegate.swift */,
 				BE97912825017DC700FF9D66 /* SceneDelegate.swift */,
+				BE9791462501830D00FF9D66 /* Controllers */,
 				BE97912A25017DC700FF9D66 /* ViewController.swift */,
 				BE97912C25017DC700FF9D66 /* Main.storyboard */,
 				BE97912F25017DC900FF9D66 /* Assets.xcassets */,
 				BE97913125017DC900FF9D66 /* LaunchScreen.storyboard */,
+				BE97913A2501809500FF9D66 /* Montserrat-Medium.ttf */,
 				BE97913425017DC900FF9D66 /* Info.plist */,
 			);
 			path = "Real Estate App";
+			sourceTree = "<group>";
+		};
+		BE9791462501830D00FF9D66 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BE97913C2501821600FF9D66 /* MainTabBarController.swift */,
+				BE97913E250182B300FF9D66 /* ExploreViewController.swift */,
+				BE979140250182D200FF9D66 /* SavedViewController.swift */,
+				BE979142250182EB00FF9D66 /* AlertsViewController.swift */,
+				BE979144250182FB00FF9D66 /* ProfileViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,6 +153,7 @@
 			files = (
 				BE97913325017DC900FF9D66 /* LaunchScreen.storyboard in Resources */,
 				BE97913025017DC900FF9D66 /* Assets.xcassets in Resources */,
+				BE97913B2501809500FF9D66 /* Montserrat-Medium.ttf in Resources */,
 				BE97912E25017DC700FF9D66 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,8 +165,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE979141250182D200FF9D66 /* SavedViewController.swift in Sources */,
 				BE97912B25017DC700FF9D66 /* ViewController.swift in Sources */,
+				BE979143250182EB00FF9D66 /* AlertsViewController.swift in Sources */,
 				BE97912725017DC700FF9D66 /* AppDelegate.swift in Sources */,
+				BE97913F250182B300FF9D66 /* ExploreViewController.swift in Sources */,
+				BE97913D2501821600FF9D66 /* MainTabBarController.swift in Sources */,
+				BE979145250182FB00FF9D66 /* ProfileViewController.swift in Sources */,
 				BE97912925017DC700FF9D66 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
