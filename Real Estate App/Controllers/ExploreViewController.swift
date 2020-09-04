@@ -9,11 +9,21 @@
 import UIKit
 
 class ExploreViewController: UIViewController {
+    
+    let sections = Bundle.main.decode([Section].self, from: "realestate.json")
+    var collectionView: UICollectionView!
+    
+    var dataSource: UICollectionViewDiffableDataSource<Section, Apartment>?
+    
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
 
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: UICollectionViewFlowLayout())
+        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        collectionView.backgroundColor = .systemBackground
+        view.addSubview(collectionView)
         // Do any additional setup after loading the view.
     }
     

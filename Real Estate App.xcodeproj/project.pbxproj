@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE74087F2502CBB900BFC2B5 /* realestate.json in Resources */ = {isa = PBXBuildFile; fileRef = BE74087E2502CBB900BFC2B5 /* realestate.json */; };
+		BE7408812502CDA700BFC2B5 /* Apartment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7408802502CDA700BFC2B5 /* Apartment.swift */; };
+		BE7408842502CE7400BFC2B5 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7408832502CE7400BFC2B5 /* Section.swift */; };
 		BE97912725017DC700FF9D66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE97912625017DC700FF9D66 /* AppDelegate.swift */; };
 		BE97912925017DC700FF9D66 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE97912825017DC700FF9D66 /* SceneDelegate.swift */; };
 		BE97912B25017DC700FF9D66 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE97912A25017DC700FF9D66 /* ViewController.swift */; };
@@ -19,9 +22,14 @@
 		BE979141250182D200FF9D66 /* SavedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE979140250182D200FF9D66 /* SavedViewController.swift */; };
 		BE979143250182EB00FF9D66 /* AlertsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE979142250182EB00FF9D66 /* AlertsViewController.swift */; };
 		BE979145250182FB00FF9D66 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE979144250182FB00FF9D66 /* ProfileViewController.swift */; };
+		BEF578CE2502D10C008E8D5C /* Bundle-Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF578CD2502D10C008E8D5C /* Bundle-Decodable.swift */; };
+		BEF578D12502D421008E8D5C /* appstore.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF578D02502D421008E8D5C /* appstore.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BE74087E2502CBB900BFC2B5 /* realestate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = realestate.json; sourceTree = SOURCE_ROOT; };
+		BE7408802502CDA700BFC2B5 /* Apartment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apartment.swift; sourceTree = "<group>"; };
+		BE7408832502CE7400BFC2B5 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		BE97912325017DC700FF9D66 /* Real Estate App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Real Estate App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE97912625017DC700FF9D66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BE97912825017DC700FF9D66 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -36,6 +44,8 @@
 		BE979140250182D200FF9D66 /* SavedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedViewController.swift; sourceTree = "<group>"; };
 		BE979142250182EB00FF9D66 /* AlertsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsViewController.swift; sourceTree = "<group>"; };
 		BE979144250182FB00FF9D66 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		BEF578CD2502D10C008E8D5C /* Bundle-Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle-Decodable.swift"; sourceTree = "<group>"; };
+		BEF578D02502D421008E8D5C /* appstore.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = appstore.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +59,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BE7408822502CDAC00BFC2B5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BE7408802502CDA700BFC2B5 /* Apartment.swift */,
+				BE7408832502CE7400BFC2B5 /* Section.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		BE97911A25017DC700FF9D66 = {
 			isa = PBXGroup;
 			children = (
@@ -70,10 +89,14 @@
 			children = (
 				BE97912625017DC700FF9D66 /* AppDelegate.swift */,
 				BE97912825017DC700FF9D66 /* SceneDelegate.swift */,
+				BE7408822502CDAC00BFC2B5 /* Models */,
 				BE9791462501830D00FF9D66 /* Controllers */,
+				BEF578CF2502D148008E8D5C /* Extensions */,
 				BE97912A25017DC700FF9D66 /* ViewController.swift */,
 				BE97912C25017DC700FF9D66 /* Main.storyboard */,
 				BE97912F25017DC900FF9D66 /* Assets.xcassets */,
+				BE74087E2502CBB900BFC2B5 /* realestate.json */,
+				BEF578D02502D421008E8D5C /* appstore.json */,
 				BE97913125017DC900FF9D66 /* LaunchScreen.storyboard */,
 				BE97913A2501809500FF9D66 /* Montserrat-Medium.ttf */,
 				BE97913425017DC900FF9D66 /* Info.plist */,
@@ -91,6 +114,14 @@
 				BE979144250182FB00FF9D66 /* ProfileViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		BEF578CF2502D148008E8D5C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BEF578CD2502D10C008E8D5C /* Bundle-Decodable.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,7 +183,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE97913325017DC900FF9D66 /* LaunchScreen.storyboard in Resources */,
+				BEF578D12502D421008E8D5C /* appstore.json in Resources */,
 				BE97913025017DC900FF9D66 /* Assets.xcassets in Resources */,
+				BE74087F2502CBB900BFC2B5 /* realestate.json in Resources */,
 				BE97913B2501809500FF9D66 /* Montserrat-Medium.ttf in Resources */,
 				BE97912E25017DC700FF9D66 /* Main.storyboard in Resources */,
 			);
@@ -170,6 +203,9 @@
 				BE979143250182EB00FF9D66 /* AlertsViewController.swift in Sources */,
 				BE97912725017DC700FF9D66 /* AppDelegate.swift in Sources */,
 				BE97913F250182B300FF9D66 /* ExploreViewController.swift in Sources */,
+				BE7408842502CE7400BFC2B5 /* Section.swift in Sources */,
+				BEF578CE2502D10C008E8D5C /* Bundle-Decodable.swift in Sources */,
+				BE7408812502CDA700BFC2B5 /* Apartment.swift in Sources */,
 				BE97913D2501821600FF9D66 /* MainTabBarController.swift in Sources */,
 				BE979145250182FB00FF9D66 /* ProfileViewController.swift in Sources */,
 				BE97912925017DC700FF9D66 /* SceneDelegate.swift in Sources */,
