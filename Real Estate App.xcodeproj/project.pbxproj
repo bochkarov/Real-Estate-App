@@ -24,6 +24,9 @@
 		BE979145250182FB00FF9D66 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE979144250182FB00FF9D66 /* ProfileViewController.swift */; };
 		BEF578CE2502D10C008E8D5C /* Bundle-Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF578CD2502D10C008E8D5C /* Bundle-Decodable.swift */; };
 		BEF578D12502D421008E8D5C /* appstore.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF578D02502D421008E8D5C /* appstore.json */; };
+		BEF578D52502DC53008E8D5C /* SelfConfiguringCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF578D42502DC53008E8D5C /* SelfConfiguringCell.swift */; };
+		BEF578D82502DD64008E8D5C /* JustInCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF578D72502DD64008E8D5C /* JustInCell.swift */; };
+		BEF578DC2502DFF3008E8D5C /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BEF578DB2502DFF3008E8D5C /* Montserrat-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +49,9 @@
 		BE979144250182FB00FF9D66 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		BEF578CD2502D10C008E8D5C /* Bundle-Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle-Decodable.swift"; sourceTree = "<group>"; };
 		BEF578D02502D421008E8D5C /* appstore.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = appstore.json; sourceTree = "<group>"; };
+		BEF578D42502DC53008E8D5C /* SelfConfiguringCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfConfiguringCell.swift; sourceTree = "<group>"; };
+		BEF578D72502DD64008E8D5C /* JustInCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JustInCell.swift; sourceTree = "<group>"; };
+		BEF578DB2502DFF3008E8D5C /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +97,8 @@
 				BE97912825017DC700FF9D66 /* SceneDelegate.swift */,
 				BE7408822502CDAC00BFC2B5 /* Models */,
 				BE9791462501830D00FF9D66 /* Controllers */,
+				BEF578DA2502DDAA008E8D5C /* View */,
+				BEF578D62502DC75008E8D5C /* Protocols */,
 				BEF578CF2502D148008E8D5C /* Extensions */,
 				BE97912A25017DC700FF9D66 /* ViewController.swift */,
 				BE97912C25017DC700FF9D66 /* Main.storyboard */,
@@ -99,6 +107,7 @@
 				BEF578D02502D421008E8D5C /* appstore.json */,
 				BE97913125017DC900FF9D66 /* LaunchScreen.storyboard */,
 				BE97913A2501809500FF9D66 /* Montserrat-Medium.ttf */,
+				BEF578DB2502DFF3008E8D5C /* Montserrat-SemiBold.ttf */,
 				BE97913425017DC900FF9D66 /* Info.plist */,
 			);
 			path = "Real Estate App";
@@ -122,6 +131,30 @@
 				BEF578CD2502D10C008E8D5C /* Bundle-Decodable.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		BEF578D62502DC75008E8D5C /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				BEF578D42502DC53008E8D5C /* SelfConfiguringCell.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		BEF578D92502DD6B008E8D5C /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				BEF578D72502DD64008E8D5C /* JustInCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		BEF578DA2502DDAA008E8D5C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BEF578D92502DD6B008E8D5C /* Cell */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -185,6 +218,7 @@
 				BE97913325017DC900FF9D66 /* LaunchScreen.storyboard in Resources */,
 				BEF578D12502D421008E8D5C /* appstore.json in Resources */,
 				BE97913025017DC900FF9D66 /* Assets.xcassets in Resources */,
+				BEF578DC2502DFF3008E8D5C /* Montserrat-SemiBold.ttf in Resources */,
 				BE74087F2502CBB900BFC2B5 /* realestate.json in Resources */,
 				BE97913B2501809500FF9D66 /* Montserrat-Medium.ttf in Resources */,
 				BE97912E25017DC700FF9D66 /* Main.storyboard in Resources */,
@@ -203,7 +237,9 @@
 				BE979143250182EB00FF9D66 /* AlertsViewController.swift in Sources */,
 				BE97912725017DC700FF9D66 /* AppDelegate.swift in Sources */,
 				BE97913F250182B300FF9D66 /* ExploreViewController.swift in Sources */,
+				BEF578D52502DC53008E8D5C /* SelfConfiguringCell.swift in Sources */,
 				BE7408842502CE7400BFC2B5 /* Section.swift in Sources */,
+				BEF578D82502DD64008E8D5C /* JustInCell.swift in Sources */,
 				BEF578CE2502D10C008E8D5C /* Bundle-Decodable.swift in Sources */,
 				BE7408812502CDA700BFC2B5 /* Apartment.swift in Sources */,
 				BE97913D2501821600FF9D66 /* MainTabBarController.swift in Sources */,
