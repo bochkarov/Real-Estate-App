@@ -6,6 +6,7 @@
 	<array>
 		<string>Montserrat-Medium.ttf</string>
 		<string>Montserrat-SemiBold.ttf</string>
+		<string>Montserrat-Bold.ttf</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>

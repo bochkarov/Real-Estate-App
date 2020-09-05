@@ -20,20 +20,21 @@ class JustInCell: UICollectionViewCell, SelfConfiguringCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        imageView.layer.cornerRadius = 5
+        imageView.layer.cornerRadius = 10
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
+
         
         pin.image = UIImage(named: "pin")
         pin.clipsToBounds = true
-        pin.contentMode = .scaleAspectFit
+        pin.contentMode = .left
 
         
         if let font = UIFont(name: "Montserrat-SemiBold", size: 16) {
-            let fontMetrics = UIFontMetrics(forTextStyle: .headline)
+            let fontMetrics = UIFontMetrics(forTextStyle: .title1)
             price.font = fontMetrics.scaledFont(for: font)
         }
-        price.textColor = .label
+        price.textColor = #colorLiteral(red: 0.2117647059, green: 0.2117647059, blue: 0.2117647059, alpha: 1)
 
         if let font = UIFont(name: "Montserrat-Medium", size: 12) {
             let fontMetrics = UIFontMetrics(forTextStyle: .title2)
@@ -48,7 +49,11 @@ class JustInCell: UICollectionViewCell, SelfConfiguringCell {
         adress.textColor = .secondaryLabel
         
         let innerStackView = UIStackView(arrangedSubviews: [pin, adress])
+//        innerStackView.spacing = 0.4
         innerStackView.axis = .horizontal
+        innerStackView.distribution = .fillProportionally
+        
+//        innerStackView.setCustomSpacing(0., after: pin)
         
         
         
@@ -64,7 +69,9 @@ class JustInCell: UICollectionViewCell, SelfConfiguringCell {
             stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
-        stackView.setCustomSpacing(10, after: imageView)
+        stackView.setCustomSpacing(15, after: imageView)
+        stackView.setCustomSpacing(4, after: price)
+        stackView.setCustomSpacing(10, after: size)
     }
     
     func configure(with apartment: Apartment) {

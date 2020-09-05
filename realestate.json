@@ -61,26 +61,26 @@
         "title": "Near You",
         "items": [
             {
-                "id": 1,
+                "id": 7,
                 "price": "$1,291 - 5,299",
                 "size": "1-4 Beds, 1-2 Baths",
                 "adress": "252 1st Avenue",
-                "image": "apparts1"
+                "image": "apparts3"
                 
             },
             {
-                "id": 2,
+                "id": 8,
                 "price": "$4,999",
                 "size": "5 Beds, 2 Baths",
                 "adress": "209 & 10th St #8",
-                "image": "apparts2"
+                "image": "apparts4"
             },
             {
-                "id": 3,
+                "id": 9,
                 "price": "$2,952",
                 "size": "3 Beds, 1 Bath",
                 "adress": "252 1st Avenue",
-                "image": "apparts3"
+                "image": "apparts5"
             }
         ]
     }

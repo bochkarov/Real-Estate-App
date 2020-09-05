@@ -24,7 +24,11 @@ class ExploreViewController: UIViewController {
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .systemBackground
         view.addSubview(collectionView)
+        
+        collectionView.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.reuseIdentifier)
         collectionView.register(JustInCell.self, forCellWithReuseIdentifier: JustInCell.reuseIdentifier)
+        collectionView.register(DesignerHomesCell.self, forCellWithReuseIdentifier: DesignerHomesCell.reuseIdentifier)
+        
         
         createDataSource()
         reloadData()
@@ -42,12 +46,27 @@ class ExploreViewController: UIViewController {
     func createDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Apartment>(collectionView: collectionView) { collectionView, indexPath, apartment in
             switch self.sections[indexPath.section].type {
-                
+            case "designerHomes":
+                return self.configure(DesignerHomesCell.self, with: apartment, for: indexPath)
             default:
                 return self.configure(JustInCell.self, with: apartment, for: indexPath)
             }
             
         }
+        
+        dataSource?.supplementaryViewProvider = { [weak self]
+               collectionView, kind, indexPath in
+               guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeader.reuseIdentifier, for: indexPath) as? SectionHeader else {
+                   return nil
+               }
+               
+               guard let firstApp = self?.dataSource?.itemIdentifier(for: indexPath) else { return nil }
+               guard let section = self?.dataSource?.snapshot().sectionIdentifier(containingItem: firstApp) else { return nil }
+               if section.title.isEmpty { return nil }
+               
+               sectionHeader.title.text = section.title
+               return sectionHeader
+           }
     }
     
     func reloadData() {
@@ -65,9 +84,10 @@ class ExploreViewController: UIViewController {
             let section = self.sections[sectionIndex]
             
             switch section.type {
-                
+            case "designerHomes":
+                return self.createDesignerHomesSection(using: section)
             default:
-                return self.createFeatureSection(using: section)
+                return self.createJustInSection(using: section)
             }
         }
         let config = UICollectionViewCompositionalLayoutConfiguration()
@@ -76,16 +96,47 @@ class ExploreViewController: UIViewController {
         return layout
     }
     
-    func createFeatureSection(using section: Section) -> NSCollectionLayoutSection {
+    func createJustInSection(using section: Section) -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
+        layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
         
-        let layoutGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.7), heightDimension: .estimated(261))
+        let layoutGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .estimated(217))
         let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: layoutGroupSize, subitems: [layoutItem])
         
         let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
-        layoutSection.orthogonalScrollingBehavior = .groupPagingCentered
+        layoutSection.orthogonalScrollingBehavior = .continuous
+        
+        let layoutSectionHeader = createSectionHeader()
+              
+          
+              layoutSection.boundarySupplementaryItems = [layoutSectionHeader]
         return layoutSection
+    }
+    
+    func createDesignerHomesSection(using section: Section) -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+         let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
+        layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
+        
+        let layoutGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.85), heightDimension: .estimated(160))
+        
+        let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: layoutGroupSize, subitems: [layoutItem])
+        let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
+        layoutSection.orthogonalScrollingBehavior = .continuous
+        
+        let layoutSectionHeader = createSectionHeader()
+        
+    
+        layoutSection.boundarySupplementaryItems = [layoutSectionHeader]
+        return layoutSection
+    }
+    
+    func createSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
+      let layoutSectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(80))
+            
+            let layoutSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: layoutSectionHeaderSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        return layoutSectionHeader
     }
 
 }
