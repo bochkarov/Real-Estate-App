@@ -10,9 +10,11 @@ import UIKit
 
 class ExploreViewController: UIViewController {
     
+
+    let settingsBarButtonItem = UIBarButtonItem(image: UIImage(named: "gear"), style: .plain, target: nil, action: nil)
+    
     let sections = Bundle.main.decode([Section].self, from: "realestate.json")
     var collectionView: UICollectionView!
-    
     var dataSource: UICollectionViewDiffableDataSource<Section, Apartment>?
     
 
@@ -29,7 +31,7 @@ class ExploreViewController: UIViewController {
         collectionView.register(JustInCell.self, forCellWithReuseIdentifier: JustInCell.reuseIdentifier)
         collectionView.register(DesignerHomesCell.self, forCellWithReuseIdentifier: DesignerHomesCell.reuseIdentifier)
         
-        
+        setupNavigationBar()
         createDataSource()
         reloadData()
     }
@@ -41,6 +43,26 @@ class ExploreViewController: UIViewController {
         
         cell.configure(with: apartment)
         return cell
+    }
+    
+    private func setupNavigationBar() {
+        let searchController = UISearchController()
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.delegate = self
+        searchController.searchBar.placeholder = "Search by Location, Area or Pin Code"
+        if let font = UIFont(name: "Montserrat-Medium", size: 10) {
+            let fontMetrics = UIFontMetrics(forTextStyle: .headline)
+                searchController.searchBar.searchTextField.font = fontMetrics.scaledFont(for: font)
+            }
+
+        
+        settingsBarButtonItem.tintColor = .black
+        navigationItem.rightBarButtonItem = settingsBarButtonItem
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
     }
     
     func createDataSource() {
@@ -133,10 +155,32 @@ class ExploreViewController: UIViewController {
     }
     
     func createSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
-      let layoutSectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(80))
+        let layoutSectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.93), heightDimension: .estimated(80))
             
             let layoutSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: layoutSectionHeaderSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         return layoutSectionHeader
     }
 
+}
+
+
+// MARK: - Actions
+extension ExploreViewController {
+    @objc func settingsBarButtonItemTapped() {
+        print(#function)
+    }
+    
+    @objc func groupsBarButtonItemTapped() {
+        print(#function)
+    }
+}
+
+// MARK: - UISearchBarDelegate
+extension ExploreViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print(searchText)
+    }
+    
+
+ 
 }

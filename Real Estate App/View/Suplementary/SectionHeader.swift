@@ -37,13 +37,11 @@ class SectionHeader: UICollectionReusableView {
         addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            button.topAnchor.constraint(equalTo: stackView.topAnchor),
-            button.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: 10),
-            button.bottomAnchor.constraint(equalTo: stackView.bottomAnchor),
+
             
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             stackView.topAnchor.constraint(equalTo: topAnchor),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20
             )
         ])
