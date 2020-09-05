@@ -12,6 +12,7 @@ class JustInCell: UICollectionViewCell, SelfConfiguringCell {
     static var reuseIdentifier: String = "JustInCell"
     
     let imageView = UIImageView()
+    let pin = UIImageView()
     let price = UILabel()
     let size = UILabel()
     let adress = UILabel()
@@ -21,41 +22,43 @@ class JustInCell: UICollectionViewCell, SelfConfiguringCell {
         
         imageView.layer.cornerRadius = 5
         imageView.clipsToBounds = true
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         
-        price.font = UIFontMetrics.default.scaledFont(for: UIFont.systemFont(ofSize: 12, weight: .bold))
-        price.textColor = .systemBlue
+        pin.image = UIImage(named: "pin")
+        pin.clipsToBounds = true
+        pin.contentMode = .scaleAspectFit
+
         
-        size.font = UIFont.preferredFont(forTextStyle: .title2)
-        size.textColor = .label
-        
-        adress.font = UIFont.preferredFont(forTextStyle: .title2)
+        if let font = UIFont(name: "Montserrat-SemiBold", size: 16) {
+            let fontMetrics = UIFontMetrics(forTextStyle: .headline)
+            price.font = fontMetrics.scaledFont(for: font)
+        }
+        price.textColor = .label
+
+        if let font = UIFont(name: "Montserrat-Medium", size: 12) {
+            let fontMetrics = UIFontMetrics(forTextStyle: .title2)
+            size.font = fontMetrics.scaledFont(for: font)
+        }
+        size.textColor = .secondaryLabel
+
+        if let font = UIFont(name: "Montserrat-Medium", size: 10) {
+            let fontMetrics = UIFontMetrics(forTextStyle: .title3)
+            adress.font = fontMetrics.scaledFont(for: font)
+        }
         adress.textColor = .secondaryLabel
         
-//        if let font = UIFont(name: "Montserrat-SemiBold", size: 16) {
-//            let fontMetrics = UIFontMetrics(forTextStyle: .headline)
-//            price.font = fontMetrics.scaledFont(for: font)
-//        }
-//        price.textColor = .label
-//
-//        if let font = UIFont(name: "Montserrat-Medium", size: 12) {
-//            let fontMetrics = UIFontMetrics(forTextStyle: .title2)
-//            size.font = fontMetrics.scaledFont(for: font)
-//        }
-//        size.textColor = .secondaryLabel
-//
-//        if let font = UIFont(name: "Montserrat-Medium", size: 10) {
-//            let fontMetrics = UIFontMetrics(forTextStyle: .title3)
-//            adress.font = fontMetrics.scaledFont(for: font)
-//        }
-//        adress.textColor = .secondaryLabel
+        let innerStackView = UIStackView(arrangedSubviews: [pin, adress])
+        innerStackView.axis = .horizontal
         
-        let stackView = UIStackView(arrangedSubviews: [imageView, price, size, adress])
+        
+        
+        let stackView = UIStackView(arrangedSubviews: [imageView, price, size, innerStackView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         contentView.addSubview(stackView)
         
         NSLayoutConstraint.activate([
+        
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
