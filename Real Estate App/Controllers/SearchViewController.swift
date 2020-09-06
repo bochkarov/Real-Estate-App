@@ -23,6 +23,8 @@ class SearchViewController: UIViewController {
         collectionView.backgroundColor = .systemBackground
         view.addSubview(collectionView)
         
+        collectionView.register(SearchVCSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchVCSectionHeader.reuseIdentifier)
+        
         collectionView.register(SearchResultsCell.self, forCellWithReuseIdentifier: SearchResultsCell.reuseIdentifier)
         createDataSource()
         reloadData()
@@ -62,6 +64,19 @@ class SearchViewController: UIViewController {
                 return self.configure(SearchResultsCell.self, with: apartment, for: indexPath)
             }
         }
+        dataSource?.supplementaryViewProvider = { [weak self]
+                  collectionView, kind, indexPath in
+                  guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SearchVCSectionHeader.reuseIdentifier, for: indexPath) as? SearchVCSectionHeader else {
+                      return nil
+                  }
+                  
+                  guard let firstApp = self?.dataSource?.itemIdentifier(for: indexPath) else { return nil }
+                  guard let section = self?.dataSource?.snapshot().sectionIdentifier(containingItem: firstApp) else { return nil }
+                  if section.title.isEmpty { return nil }
+                  
+                  sectionHeader.title.text = section.title
+                  return sectionHeader
+              }
     }
     func reloadData() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Apartment>()
@@ -94,11 +109,23 @@ class SearchViewController: UIViewController {
     func createSearchResultSection(using section: Section) -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
-         layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
-        let layoutGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(193))
+         layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 10, bottom: 15, trailing: 10)
+        let layoutGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(240))
         let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: layoutGroupSize, subitems: [layoutItem])
         let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
+        
+        let layoutSectionHeader = createSectionHeader()
+               
+           
+               layoutSection.boundarySupplementaryItems = [layoutSectionHeader]
         return layoutSection
+    }
+    
+    func createSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
+        let layoutSectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.93), heightDimension: .estimated(80))
+            
+            let layoutSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: layoutSectionHeaderSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        return layoutSectionHeader
     }
     
     

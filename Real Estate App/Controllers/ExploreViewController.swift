@@ -187,6 +187,4 @@ extension ExploreViewController: UISearchBarDelegate {
         navigationController.modalPresentationStyle = .fullScreen
         self.present(navigationController, animated: true, completion: nil)
     }
-
- 
 }

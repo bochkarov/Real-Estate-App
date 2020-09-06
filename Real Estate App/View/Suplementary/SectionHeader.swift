@@ -21,7 +21,6 @@ class SectionHeader: UICollectionReusableView {
             title.font = fontMetrics.scaledFont(for: font)
         }
         
-        
         if let font = UIFont(name: "Montserrat-SemiBold", size: 12) {
             let fontMetrics = UIFontMetrics(forTextStyle: .title1)
             button.titleLabel?.font = fontMetrics.scaledFont(for: font)
@@ -37,18 +36,13 @@ class SectionHeader: UICollectionReusableView {
         addSubview(stackView)
         
         NSLayoutConstraint.activate([
-
-            
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             stackView.topAnchor.constraint(equalTo: topAnchor),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20
             )
         ])
-        
-        
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

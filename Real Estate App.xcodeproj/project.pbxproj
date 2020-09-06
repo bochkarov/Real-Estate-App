@@ -33,6 +33,7 @@
 		BEF578DC2502DFF3008E8D5C /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BEF578DB2502DFF3008E8D5C /* Montserrat-SemiBold.ttf */; };
 		BEFCA1322504ECD600C3E31B /* searchResults.json in Resources */ = {isa = PBXBuildFile; fileRef = BEFCA1312504ECD600C3E31B /* searchResults.json */; };
 		BEFCA1342504EFB300C3E31B /* SearchResultsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFCA1332504EFB200C3E31B /* SearchResultsCell.swift */; };
+		BEFCA13625055EEB00C3E31B /* SearchVCSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFCA13525055EEB00C3E31B /* SearchVCSectionHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		BEF578DB2502DFF3008E8D5C /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		BEFCA1312504ECD600C3E31B /* searchResults.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = searchResults.json; sourceTree = "<group>"; };
 		BEFCA1332504EFB200C3E31B /* SearchResultsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsCell.swift; sourceTree = "<group>"; };
+		BEFCA13525055EEB00C3E31B /* SearchVCSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVCSectionHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				BE3A028D2503C6D4001CF633 /* SectionHeader.swift */,
+				BEFCA13525055EEB00C3E31B /* SearchVCSectionHeader.swift */,
 			);
 			path = Suplementary;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				BE979141250182D200FF9D66 /* SavedViewController.swift in Sources */,
 				BE97912B25017DC700FF9D66 /* ViewController.swift in Sources */,
 				BE3A028E2503C6D4001CF633 /* SectionHeader.swift in Sources */,
+				BEFCA13625055EEB00C3E31B /* SearchVCSectionHeader.swift in Sources */,
 				BE979143250182EB00FF9D66 /* AlertsViewController.swift in Sources */,
 				BE97912725017DC700FF9D66 /* AppDelegate.swift in Sources */,
 				BE97913F250182B300FF9D66 /* ExploreViewController.swift in Sources */,
