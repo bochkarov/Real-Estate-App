@@ -1,0 +1,52 @@
+[
+    {
+        "id": 1,
+        "type": "searchResults",
+        "title": "32 Results Found",
+        "items": [
+            {
+                "id": 1,
+                "price": "$1,291",
+                "size": "400 sq.ft • 1 Bed • 1 Bath",
+                "adress": "5th Avenue",
+                "image": "apparts1"
+            },
+            {
+                "id": 2,
+                "price": "$4,999",
+                "size": "1400 sq.ft • 5 Bed • 2 Bath",
+                "adress": "209 & 10th St #8",
+                "image": "apparts2"
+            },
+            {
+                "id": 3,
+                "price": "$2,952",
+                "size": "1000 sq.ft • 3 Bed • 1 Bath",
+                "adress": "252 1st Avenue",
+                "image": "apparts3"
+            },
+            {
+                "id": 4,
+                "price": "$5,299",
+                "size": "1450 sq.ft • 6 Bed • 2 Bath",
+                "adress": "252 1st Avenue",
+                "image": "apparts4"
+                
+            },
+            {
+                "id": 5,
+                "price": "$4,999",
+                "size": "1300 sq.ft • 3 Bed • 1 Bath",
+                "adress": "209 & 10th St #8",
+                "image": "apparts5"
+            },
+            {
+                "id": 6,
+                "price": "$2,952",
+                "size": "1000 sq.ft • 3 Bed • 1 Bath",
+                "adress": "252 1st Avenue",
+                "image": "apparts2"
+            }
+        ]
+    }
+]

@@ -10,6 +10,8 @@ import UIKit
 
 class ExploreViewController: UIViewController {
     
+    
+    
 
     let settingsBarButtonItem = UIBarButtonItem(image: UIImage(named: "gear"), style: .plain, target: nil, action: nil)
     
@@ -58,7 +60,6 @@ class ExploreViewController: UIViewController {
                 searchController.searchBar.searchTextField.font = fontMetrics.scaledFont(for: font)
             }
 
-        
         settingsBarButtonItem.tintColor = .black
         navigationItem.rightBarButtonItem = settingsBarButtonItem
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -180,7 +181,12 @@ extension ExploreViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print(searchText)
     }
-    
+       func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        let searchVC = SearchViewController()
+        let navigationController = UINavigationController(rootViewController: searchVC)
+        navigationController.modalPresentationStyle = .fullScreen
+        self.present(navigationController, animated: true, completion: nil)
+    }
 
  
 }

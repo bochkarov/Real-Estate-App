@@ -25,11 +25,14 @@
 		BE979143250182EB00FF9D66 /* AlertsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE979142250182EB00FF9D66 /* AlertsViewController.swift */; };
 		BE979145250182FB00FF9D66 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE979144250182FB00FF9D66 /* ProfileViewController.swift */; };
 		BEEE1720250418FD00ADF35F /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BEEE171F250418FD00ADF35F /* Montserrat-Bold.ttf */; };
+		BEEE17242504D34E00ADF35F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEE17232504D34E00ADF35F /* SearchViewController.swift */; };
 		BEF578CE2502D10C008E8D5C /* Bundle-Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF578CD2502D10C008E8D5C /* Bundle-Decodable.swift */; };
 		BEF578D12502D421008E8D5C /* appstore.json in Resources */ = {isa = PBXBuildFile; fileRef = BEF578D02502D421008E8D5C /* appstore.json */; };
 		BEF578D52502DC53008E8D5C /* SelfConfiguringCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF578D42502DC53008E8D5C /* SelfConfiguringCell.swift */; };
 		BEF578D82502DD64008E8D5C /* JustInCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF578D72502DD64008E8D5C /* JustInCell.swift */; };
 		BEF578DC2502DFF3008E8D5C /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BEF578DB2502DFF3008E8D5C /* Montserrat-SemiBold.ttf */; };
+		BEFCA1322504ECD600C3E31B /* searchResults.json in Resources */ = {isa = PBXBuildFile; fileRef = BEFCA1312504ECD600C3E31B /* searchResults.json */; };
+		BEFCA1342504EFB300C3E31B /* SearchResultsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEFCA1332504EFB200C3E31B /* SearchResultsCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,11 +56,14 @@
 		BE979142250182EB00FF9D66 /* AlertsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsViewController.swift; sourceTree = "<group>"; };
 		BE979144250182FB00FF9D66 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		BEEE171F250418FD00ADF35F /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		BEEE17232504D34E00ADF35F /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		BEF578CD2502D10C008E8D5C /* Bundle-Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle-Decodable.swift"; sourceTree = "<group>"; };
 		BEF578D02502D421008E8D5C /* appstore.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = appstore.json; sourceTree = "<group>"; };
 		BEF578D42502DC53008E8D5C /* SelfConfiguringCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfConfiguringCell.swift; sourceTree = "<group>"; };
 		BEF578D72502DD64008E8D5C /* JustInCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JustInCell.swift; sourceTree = "<group>"; };
 		BEF578DB2502DFF3008E8D5C /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
+		BEFCA1312504ECD600C3E31B /* searchResults.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = searchResults.json; sourceTree = "<group>"; };
+		BEFCA1332504EFB200C3E31B /* SearchResultsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +123,7 @@
 				BE97912A25017DC700FF9D66 /* ViewController.swift */,
 				BE97912C25017DC700FF9D66 /* Main.storyboard */,
 				BE97912F25017DC900FF9D66 /* Assets.xcassets */,
+				BEFCA1312504ECD600C3E31B /* searchResults.json */,
 				BE74087E2502CBB900BFC2B5 /* realestate.json */,
 				BEF578D02502D421008E8D5C /* appstore.json */,
 				BE97913125017DC900FF9D66 /* LaunchScreen.storyboard */,
@@ -133,6 +140,7 @@
 			children = (
 				BE97913C2501821600FF9D66 /* MainTabBarController.swift */,
 				BE97913E250182B300FF9D66 /* ExploreViewController.swift */,
+				BEEE17232504D34E00ADF35F /* SearchViewController.swift */,
 				BE979140250182D200FF9D66 /* SavedViewController.swift */,
 				BE979142250182EB00FF9D66 /* AlertsViewController.swift */,
 				BE979144250182FB00FF9D66 /* ProfileViewController.swift */,
@@ -161,6 +169,7 @@
 			children = (
 				BEF578D72502DD64008E8D5C /* JustInCell.swift */,
 				BE3DCDBD2503AF1D00BAA5DE /* DesignerHomesCell.swift */,
+				BEFCA1332504EFB200C3E31B /* SearchResultsCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -236,6 +245,7 @@
 				BEF578D12502D421008E8D5C /* appstore.json in Resources */,
 				BE97913025017DC900FF9D66 /* Assets.xcassets in Resources */,
 				BEF578DC2502DFF3008E8D5C /* Montserrat-SemiBold.ttf in Resources */,
+				BEFCA1322504ECD600C3E31B /* searchResults.json in Resources */,
 				BEEE1720250418FD00ADF35F /* Montserrat-Bold.ttf in Resources */,
 				BE74087F2502CBB900BFC2B5 /* realestate.json in Resources */,
 				BE97913B2501809500FF9D66 /* Montserrat-Medium.ttf in Resources */,
@@ -256,10 +266,12 @@
 				BE979143250182EB00FF9D66 /* AlertsViewController.swift in Sources */,
 				BE97912725017DC700FF9D66 /* AppDelegate.swift in Sources */,
 				BE97913F250182B300FF9D66 /* ExploreViewController.swift in Sources */,
+				BEFCA1342504EFB300C3E31B /* SearchResultsCell.swift in Sources */,
 				BEF578D52502DC53008E8D5C /* SelfConfiguringCell.swift in Sources */,
 				BE7408842502CE7400BFC2B5 /* Section.swift in Sources */,
 				BE3DCDBE2503AF1D00BAA5DE /* DesignerHomesCell.swift in Sources */,
 				BEF578D82502DD64008E8D5C /* JustInCell.swift in Sources */,
+				BEEE17242504D34E00ADF35F /* SearchViewController.swift in Sources */,
 				BEF578CE2502D10C008E8D5C /* Bundle-Decodable.swift in Sources */,
 				BE7408812502CDA700BFC2B5 /* Apartment.swift in Sources */,
 				BE97913D2501821600FF9D66 /* MainTabBarController.swift in Sources */,
