@@ -19,6 +19,10 @@ class ExploreViewController: UIViewController {
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Apartment>?
     
+    let pin = UIImageView()
+    let locationLabel = UILabel()
+    let locationButton = UIButton()
+    
 
 
     override func viewDidLoad() {
@@ -59,11 +63,45 @@ class ExploreViewController: UIViewController {
             let fontMetrics = UIFontMetrics(forTextStyle: .headline)
                 searchController.searchBar.searchTextField.font = fontMetrics.scaledFont(for: font)
             }
+        
+        
 
         settingsBarButtonItem.tintColor = .black
         navigationItem.rightBarButtonItem = settingsBarButtonItem
-//        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.prefersLargeTitles = true
         
+        pin.image = UIImage(named: "pin20")
+        pin.clipsToBounds = true
+        pin.contentMode = .center
+        
+        if let font = UIFont(name: "Montserrat-Medium", size: 10) {
+                          let fontMetrics = UIFontMetrics(forTextStyle: .title1)
+                          locationLabel.font = fontMetrics.scaledFont(for: font)
+                      }
+        locationLabel.textColor = #colorLiteral(red: 0.6941176471, green: 0.6784313725, blue: 0.6784313725, alpha: 1)
+        locationLabel.text = "Location"
+        
+        if let font = UIFont(name: "Montserrat-SemiBold", size: 14) {
+                    let fontMetrics = UIFontMetrics(forTextStyle: .title1)
+                    locationButton.titleLabel?.font = fontMetrics.scaledFont(for: font)
+                }
+        
+        locationButton.setTitle("Woodbridge ", for: .normal)
+        locationButton.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
+        locationButton.setImage(UIImage(named: "arrowDown"), for: .normal)
+        locationButton.semanticContentAttribute = .forceRightToLeft
+        
+        let innerNavStackview = UIStackView(arrangedSubviews: [locationLabel, locationButton])
+        innerNavStackview.axis = .vertical
+        innerNavStackview.setCustomSpacing(4, after: locationLabel)
+        
+        let leftNavStackView = UIStackView(arrangedSubviews: [pin, innerNavStackview])
+        leftNavStackView.setCustomSpacing(10, after: pin)
+//        leftNavStackView.distribution = .fillEqually
+        
+        let leftBarButtonItem = UIBarButtonItem(customView: leftNavStackView)
+        
+        navigationItem.leftBarButtonItem = leftBarButtonItem
     }
     
     func createDataSource() {
