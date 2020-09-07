@@ -63,8 +63,18 @@ class ExploreViewController: UIViewController {
             let fontMetrics = UIFontMetrics(forTextStyle: .headline)
                 searchController.searchBar.searchTextField.font = fontMetrics.scaledFont(for: font)
             }
+        let searchBar = searchController.searchBar
         
+        let searchTextField:UITextField = searchBar.value(forKey: "searchField") as! UITextField
         
+              searchTextField.layer.cornerRadius = 15
+              searchTextField.textAlignment = NSTextAlignment.left
+              let image:UIImage = UIImage(named: "pin")!
+              let imageView:UIImageView = UIImageView.init(image: image)
+              searchTextField.leftView = nil
+              searchTextField.placeholder = "Search by Location, Area or Pin Code"
+              searchTextField.rightView = imageView
+        searchTextField.rightViewMode = UITextField.ViewMode.always
 
         settingsBarButtonItem.tintColor = .black
         navigationItem.rightBarButtonItem = settingsBarButtonItem
