@@ -48,7 +48,7 @@ class ExploreViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        let searchController = UISearchController()
+        let searchController = UISearchController(searchResultsController: SearchViewController())
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.hidesNavigationBarDuringPresentation = false
@@ -62,7 +62,7 @@ class ExploreViewController: UIViewController {
 
         settingsBarButtonItem.tintColor = .black
         navigationItem.rightBarButtonItem = settingsBarButtonItem
-        navigationController?.navigationBar.prefersLargeTitles = true
+//        navigationController?.navigationBar.prefersLargeTitles = true
         
     }
     
@@ -180,11 +180,5 @@ extension ExploreViewController {
 extension ExploreViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print(searchText)
-    }
-       func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        let searchVC = SearchViewController()
-        let navigationController = UINavigationController(rootViewController: searchVC)
-        navigationController.modalPresentationStyle = .fullScreen
-        self.present(navigationController, animated: true, completion: nil)
     }
 }
