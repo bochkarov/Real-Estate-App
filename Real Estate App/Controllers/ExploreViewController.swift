@@ -65,26 +65,14 @@ class ExploreViewController: UIViewController {
         }
         let searchBar = searchController.searchBar
         let searchTextField:UITextField = searchBar.value(forKey: "searchField") as! UITextField
+        searchTextField.leftView = .none
         
         
-        searchTextField.layer.cornerRadius = 10
-        searchTextField.textAlignment = NSTextAlignment.left
-//        searchTextField.leftView = nil
-        searchTextField.rightViewMode = .always
-        searchTextField.leftViewMode = .always
+    
+        searchController.searchBar.showsBookmarkButton = true
+        searchController.searchBar.setImage (UIImage(named: "search"), for: .bookmark, state: .normal)
         
-        let imageView = UIImageView()
-        let image = UIImage(named: "gear")
-        imageView.image = image
-        imageView.frame = CGRect(x: 5, y: 5, width: searchTextField.frame.height, height: searchTextField.frame.height)
-        searchTextField.leftView = imageView
 
-
-
-        
-        imageView.image = UIImage(named: "pin")
-        searchTextField.placeholder = "Search by Location, Area or Pin Code"
-        searchTextField.rightView = imageView
         
         settingsBarButtonItem.tintColor = .black
         navigationItem.rightBarButtonItem = settingsBarButtonItem
