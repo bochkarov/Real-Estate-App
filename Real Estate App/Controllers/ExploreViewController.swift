@@ -12,7 +12,7 @@ class ExploreViewController: UIViewController {
     
     
     
-
+    
     let settingsBarButtonItem = UIBarButtonItem(image: UIImage(named: "gear"), style: .plain, target: nil, action: nil)
     
     let sections = Bundle.main.decode([Section].self, from: "realestate.json")
@@ -23,11 +23,11 @@ class ExploreViewController: UIViewController {
     let locationLabel = UILabel()
     let locationButton = UIButton()
     
-
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createCompositionalLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .systemBackground
@@ -61,21 +61,31 @@ class ExploreViewController: UIViewController {
         searchController.searchBar.placeholder = "Search by Location, Area or Pin Code"
         if let font = UIFont(name: "Montserrat-Medium", size: 10) {
             let fontMetrics = UIFontMetrics(forTextStyle: .headline)
-                searchController.searchBar.searchTextField.font = fontMetrics.scaledFont(for: font)
-            }
+            searchController.searchBar.searchTextField.font = fontMetrics.scaledFont(for: font)
+        }
         let searchBar = searchController.searchBar
-        
         let searchTextField:UITextField = searchBar.value(forKey: "searchField") as! UITextField
         
-              searchTextField.layer.cornerRadius = 15
-              searchTextField.textAlignment = NSTextAlignment.left
-              let image:UIImage = UIImage(named: "pin")!
-              let imageView:UIImageView = UIImageView.init(image: image)
-              searchTextField.leftView = nil
-              searchTextField.placeholder = "Search by Location, Area or Pin Code"
-              searchTextField.rightView = imageView
-        searchTextField.rightViewMode = UITextField.ViewMode.always
+        
+        searchTextField.layer.cornerRadius = 10
+        searchTextField.textAlignment = NSTextAlignment.left
+//        searchTextField.leftView = nil
+        searchTextField.rightViewMode = .always
+        searchTextField.leftViewMode = .always
+        
+        let imageView = UIImageView()
+        let image = UIImage(named: "gear")
+        imageView.image = image
+        imageView.frame = CGRect(x: 5, y: 5, width: searchTextField.frame.height, height: searchTextField.frame.height)
+        searchTextField.leftView = imageView
 
+
+
+        
+        imageView.image = UIImage(named: "pin")
+        searchTextField.placeholder = "Search by Location, Area or Pin Code"
+        searchTextField.rightView = imageView
+        
         settingsBarButtonItem.tintColor = .black
         navigationItem.rightBarButtonItem = settingsBarButtonItem
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -85,16 +95,16 @@ class ExploreViewController: UIViewController {
         pin.contentMode = .center
         
         if let font = UIFont(name: "Montserrat-Medium", size: 10) {
-                          let fontMetrics = UIFontMetrics(forTextStyle: .title1)
-                          locationLabel.font = fontMetrics.scaledFont(for: font)
-                      }
+            let fontMetrics = UIFontMetrics(forTextStyle: .title1)
+            locationLabel.font = fontMetrics.scaledFont(for: font)
+        }
         locationLabel.textColor = #colorLiteral(red: 0.6941176471, green: 0.6784313725, blue: 0.6784313725, alpha: 1)
         locationLabel.text = "Location"
         
         if let font = UIFont(name: "Montserrat-SemiBold", size: 14) {
-                    let fontMetrics = UIFontMetrics(forTextStyle: .title1)
-                    locationButton.titleLabel?.font = fontMetrics.scaledFont(for: font)
-                }
+            let fontMetrics = UIFontMetrics(forTextStyle: .title1)
+            locationButton.titleLabel?.font = fontMetrics.scaledFont(for: font)
+        }
         
         locationButton.setTitle("Woodbridge ", for: .normal)
         locationButton.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
@@ -107,7 +117,7 @@ class ExploreViewController: UIViewController {
         
         let leftNavStackView = UIStackView(arrangedSubviews: [pin, innerNavStackview])
         leftNavStackView.setCustomSpacing(10, after: pin)
-//        leftNavStackView.distribution = .fillEqually
+        //        leftNavStackView.distribution = .fillEqually
         
         let leftBarButtonItem = UIBarButtonItem(customView: leftNavStackView)
         
@@ -126,18 +136,18 @@ class ExploreViewController: UIViewController {
         }
         
         dataSource?.supplementaryViewProvider = { [weak self]
-               collectionView, kind, indexPath in
-               guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeader.reuseIdentifier, for: indexPath) as? SectionHeader else {
-                   return nil
-               }
-               
-               guard let firstApp = self?.dataSource?.itemIdentifier(for: indexPath) else { return nil }
-               guard let section = self?.dataSource?.snapshot().sectionIdentifier(containingItem: firstApp) else { return nil }
-               if section.title.isEmpty { return nil }
-               
-               sectionHeader.title.text = section.title
-               return sectionHeader
-           }
+            collectionView, kind, indexPath in
+            guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeader.reuseIdentifier, for: indexPath) as? SectionHeader else {
+                return nil
+            }
+            
+            guard let firstApp = self?.dataSource?.itemIdentifier(for: indexPath) else { return nil }
+            guard let section = self?.dataSource?.snapshot().sectionIdentifier(containingItem: firstApp) else { return nil }
+            if section.title.isEmpty { return nil }
+            
+            sectionHeader.title.text = section.title
+            return sectionHeader
+        }
     }
     
     func reloadData() {
@@ -179,15 +189,15 @@ class ExploreViewController: UIViewController {
         layoutSection.orthogonalScrollingBehavior = .continuous
         
         let layoutSectionHeader = createSectionHeader()
-              
-          
-              layoutSection.boundarySupplementaryItems = [layoutSectionHeader]
+        
+        
+        layoutSection.boundarySupplementaryItems = [layoutSectionHeader]
         return layoutSection
     }
     
     func createDesignerHomesSection(using section: Section) -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-         let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
+        let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
         layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
         
         let layoutGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.85), heightDimension: .estimated(160))
@@ -198,18 +208,18 @@ class ExploreViewController: UIViewController {
         
         let layoutSectionHeader = createSectionHeader()
         
-    
+        
         layoutSection.boundarySupplementaryItems = [layoutSectionHeader]
         return layoutSection
     }
     
     func createSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
         let layoutSectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.93), heightDimension: .estimated(80))
-            
-            let layoutSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: layoutSectionHeaderSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        
+        let layoutSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: layoutSectionHeaderSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         return layoutSectionHeader
     }
-
+    
 }
 
 
@@ -227,6 +237,19 @@ extension ExploreViewController {
 // MARK: - UISearchBarDelegate
 extension ExploreViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        navigationItem.rightBarButtonItem = .none
+        navigationItem.leftBarButtonItem = .none
+        self.navigationController?.navigationBar.prefersLargeTitles = false
+        
+        
+        
         print(searchText)
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        
+    }
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        setupNavigationBar()
     }
 }
