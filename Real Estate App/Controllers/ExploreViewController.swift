@@ -20,9 +20,7 @@ class ExploreViewController: UIViewController {
     let locationLabel = UILabel()
     let locationButton = UIButton()
             let searchController = UISearchController(searchResultsController: SearchViewController())
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -57,7 +55,7 @@ class ExploreViewController: UIViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = "Search by Location, Area or Pin Code"
-        searchController.searchBar.showsCancelButton = false
+//        searchController.searchBar.showsCancelButton = false
 
         if let font = UIFont(name: "Montserrat-Medium", size: 10) {
             let fontMetrics = UIFontMetrics(forTextStyle: .headline)
@@ -118,9 +116,6 @@ class ExploreViewController: UIViewController {
         navigationItem.leftBarButtonItem = leftBarButtonItem
     }
     
-    @objc    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-         searchBar.text = ""
-     }
 
     func createDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Apartment>(collectionView: collectionView) { collectionView, indexPath, apartment in
@@ -240,7 +235,7 @@ extension ExploreViewController: UISearchBarDelegate {
         self.navigationController?.navigationBar.prefersLargeTitles = false
         let backButton = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
            backButton.setImage(UIImage(named: "back"), for: .normal)
-           backButton.addTarget(self, action: #selector(searchBarCancelButtonClicked), for: .touchUpInside)
+           backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
            let leftView = UIView()
            leftView.addSubview(backButton)
            leftView.translatesAutoresizingMaskIntoConstraints = false
@@ -251,12 +246,24 @@ extension ExploreViewController: UISearchBarDelegate {
         print(searchText)
     }
     
+    @objc func backButtonTapped() {
+        searchController.searchBar.searchTextField.text = ""
+        searchBarCancelButtonClicked(searchController.searchBar)
+
+    }
+    
+    
+    
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        
     }
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         setupNavigationBar()
     }
+  
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+         
+     }
+
     
 
 }
