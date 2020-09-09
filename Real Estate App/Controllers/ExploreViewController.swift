@@ -10,9 +10,6 @@ import UIKit
 
 class ExploreViewController: UIViewController {
     
-    
-    
-    
     let settingsBarButtonItem = UIBarButtonItem(image: UIImage(named: "gear"), style: .plain, target: nil, action: nil)
     
     let sections = Bundle.main.decode([Section].self, from: "realestate.json")
@@ -22,6 +19,7 @@ class ExploreViewController: UIViewController {
     let pin = UIImageView()
     let locationLabel = UILabel()
     let locationButton = UIButton()
+            let searchController = UISearchController(searchResultsController: SearchViewController())
     
     
     
@@ -52,25 +50,33 @@ class ExploreViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        let searchController = UISearchController(searchResultsController: SearchViewController())
+
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = "Search by Location, Area or Pin Code"
+        searchController.searchBar.showsCancelButton = false
+
         if let font = UIFont(name: "Montserrat-Medium", size: 10) {
             let fontMetrics = UIFontMetrics(forTextStyle: .headline)
             searchController.searchBar.searchTextField.font = fontMetrics.scaledFont(for: font)
         }
         let searchBar = searchController.searchBar
         let searchTextField:UITextField = searchBar.value(forKey: "searchField") as! UITextField
-        searchTextField.leftView = .none
+        
+        searchTextField.leftViewMode = .always
+   
+        
+
         
         
     
         searchController.searchBar.showsBookmarkButton = true
         searchController.searchBar.setImage (UIImage(named: "search"), for: .bookmark, state: .normal)
+        searchController.searchBar.setImage(UIImage(named: "clear"), for: .clear, state: .normal)
+        
         
 
         
@@ -112,6 +118,10 @@ class ExploreViewController: UIViewController {
         navigationItem.leftBarButtonItem = leftBarButtonItem
     }
     
+    @objc    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+         searchBar.text = ""
+     }
+
     func createDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Apartment>(collectionView: collectionView) { collectionView, indexPath, apartment in
             switch self.sections[indexPath.section].type {
@@ -228,9 +238,16 @@ extension ExploreViewController: UISearchBarDelegate {
         navigationItem.rightBarButtonItem = .none
         navigationItem.leftBarButtonItem = .none
         self.navigationController?.navigationBar.prefersLargeTitles = false
+        let backButton = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+           backButton.setImage(UIImage(named: "back"), for: .normal)
+           backButton.addTarget(self, action: #selector(searchBarCancelButtonClicked), for: .touchUpInside)
+           let leftView = UIView()
+           leftView.addSubview(backButton)
+           leftView.translatesAutoresizingMaskIntoConstraints = false
+           leftView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+           leftView.widthAnchor.constraint(equalToConstant: 20).isActive = true
         
-        
-        
+        searchController.searchBar.searchTextField.leftView = leftView
         print(searchText)
     }
     
@@ -240,4 +257,6 @@ extension ExploreViewController: UISearchBarDelegate {
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         setupNavigationBar()
     }
+    
+
 }
