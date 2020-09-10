@@ -241,6 +241,15 @@ extension ExploreViewController: UISearchBarDelegate {
            leftView.translatesAutoresizingMaskIntoConstraints = false
            leftView.heightAnchor.constraint(equalToConstant: 20).isActive = true
            leftView.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        backButton.centerYAnchor.constraint(equalTo: leftView.centerYAnchor).isActive = true
+        backButton.leadingAnchor.constraint(equalTo: leftView.leadingAnchor).isActive = true
+        backButton.topAnchor.constraint(equalTo: leftView.topAnchor).isActive = true
+
+        backButton.bottomAnchor.constraint(equalTo: leftView.bottomAnchor).isActive = true
+        searchController.searchBar.searchTextField.leftView?.frame = CGRect(x: 0, y: 0, width: searchController.searchBar.searchTextField.bounds.height, height: searchController.searchBar.searchTextField.bounds.height)
+
+        
         
         searchController.searchBar.searchTextField.leftView = leftView
         print(searchText)
