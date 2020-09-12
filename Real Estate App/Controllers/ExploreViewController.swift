@@ -19,7 +19,8 @@ class ExploreViewController: UIViewController {
     let pin = UIImageView()
     let locationLabel = UILabel()
     let locationButton = UIButton()
-            let searchController = UISearchController(searchResultsController: SearchViewController())
+    let searchController = UISearchController(searchResultsController: SearchViewController())
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,7 @@ class ExploreViewController: UIViewController {
         collectionView.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.reuseIdentifier)
         collectionView.register(JustInCell.self, forCellWithReuseIdentifier: JustInCell.reuseIdentifier)
         collectionView.register(DesignerHomesCell.self, forCellWithReuseIdentifier: DesignerHomesCell.reuseIdentifier)
+        
         
         setupNavigationBar()
         createDataSource()
@@ -55,6 +57,7 @@ class ExploreViewController: UIViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = "Search by Location, Area or Pin Code"
+        searchController.showsSearchResultsController = true
 //        searchController.searchBar.showsCancelButton = false
 
         if let font = UIFont(name: "Montserrat-Medium", size: 10) {
