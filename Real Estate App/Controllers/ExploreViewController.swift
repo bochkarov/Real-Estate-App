@@ -53,12 +53,15 @@ class ExploreViewController: UIViewController {
 
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
-        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = true
         searchController.obscuresBackgroundDuringPresentation = false
+        searchController.showsSearchResultsController = true
+        searchController.searchBar.showsCancelButton = false
+
+
         searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = "Search by Location, Area or Pin Code"
-        searchController.showsSearchResultsController = true
-//        searchController.searchBar.showsCancelButton = false
+        
 
         if let font = UIFont(name: "Montserrat-Medium", size: 10) {
             let fontMetrics = UIFontMetrics(forTextStyle: .headline)
@@ -68,15 +71,16 @@ class ExploreViewController: UIViewController {
         let searchTextField:UITextField = searchBar.value(forKey: "searchField") as! UITextField
         
         searchTextField.leftViewMode = .always
+        searchController.searchBar.searchTextField.leftView = .none
    
         
 
+
         
-        
-    
         searchController.searchBar.showsBookmarkButton = true
         searchController.searchBar.setImage (UIImage(named: "search"), for: .bookmark, state: .normal)
         searchController.searchBar.setImage(UIImage(named: "clear"), for: .clear, state: .normal)
+     
         
         
 
@@ -232,45 +236,52 @@ extension ExploreViewController {
 
 // MARK: - UISearchBarDelegate
 extension ExploreViewController: UISearchBarDelegate {
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        navigationItem.rightBarButtonItem = .none
-        navigationItem.leftBarButtonItem = .none
-        self.navigationController?.navigationBar.prefersLargeTitles = false
-        let backButton = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-           backButton.setImage(UIImage(named: "back"), for: .normal)
-           backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-           let leftView = UIView()
-           leftView.addSubview(backButton)
-           leftView.translatesAutoresizingMaskIntoConstraints = false
-           leftView.heightAnchor.constraint(equalToConstant: 20).isActive = true
-           leftView.widthAnchor.constraint(equalToConstant: 20).isActive = true
-        backButton.translatesAutoresizingMaskIntoConstraints = false
-        backButton.centerYAnchor.constraint(equalTo: leftView.centerYAnchor).isActive = true
-        backButton.leadingAnchor.constraint(equalTo: leftView.leadingAnchor).isActive = true
-        backButton.topAnchor.constraint(equalTo: leftView.topAnchor).isActive = true
-
-        backButton.bottomAnchor.constraint(equalTo: leftView.bottomAnchor).isActive = true
-        searchController.searchBar.searchTextField.leftView?.frame = CGRect(x: 0, y: 0, width: searchController.searchBar.searchTextField.bounds.height, height: searchController.searchBar.searchTextField.bounds.height)
-
-        
-        
-        searchController.searchBar.searchTextField.leftView = leftView
-        print(searchText)
+   
     }
     
     @objc func backButtonTapped() {
-        searchController.searchBar.searchTextField.text = ""
-        searchBarCancelButtonClicked(searchController.searchBar)
+        searchController.isActive = false
+//        searchController.searchBar.searchTextField.leftView = .none
+
 
     }
     
     
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+
+        let searchTextField = searchController.searchBar.searchTextField
+        
+           let backButton = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+              backButton.setImage(UIImage(named: "back"), for: .normal)
+              backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+              let leftView = UIView()
+              leftView.addSubview(backButton)
+              leftView.translatesAutoresizingMaskIntoConstraints = false
+              leftView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+              leftView.widthAnchor.constraint(equalToConstant: 20).isActive = true
+      
+        
+        
+        
+           backButton.translatesAutoresizingMaskIntoConstraints = false
+           backButton.centerYAnchor.constraint(equalTo: leftView.centerYAnchor).isActive = true
+           backButton.leadingAnchor.constraint(equalTo: leftView.leadingAnchor).isActive = true
+           backButton.topAnchor.constraint(equalTo: leftView.topAnchor).isActive = true
+
+           backButton.bottomAnchor.constraint(equalTo: leftView.bottomAnchor).isActive = true
+           searchController.searchBar.searchTextField.leftView?.frame = CGRect(x: 0, y: 0, width: searchController.searchBar.searchTextField.bounds.height, height: searchController.searchBar.searchTextField.bounds.height)
+
+           
+           
+           searchController.searchBar.searchTextField.leftView = leftView
+//           print(searchText)
     }
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        setupNavigationBar()
-    }
+//    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+//        setupNavigationBar()
+//    }
   
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
          
