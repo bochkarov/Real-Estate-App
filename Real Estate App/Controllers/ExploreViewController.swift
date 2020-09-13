@@ -243,7 +243,7 @@ extension ExploreViewController: UISearchBarDelegate {
     
     @objc func backButtonTapped() {
         searchController.isActive = false
-//        searchController.searchBar.searchTextField.leftView = .none
+        searchController.searchBar.searchTextField.leftView = .none
 
 
     }
@@ -252,26 +252,28 @@ extension ExploreViewController: UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
 
-        let searchTextField = searchController.searchBar.searchTextField
         
-           let backButton = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+           let backButton = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
               backButton.setImage(UIImage(named: "back"), for: .normal)
               backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
-              let leftView = UIView()
+              let leftView = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 24))
+        leftView.contentMode = .scaleAspectFill
+        
+        
               leftView.addSubview(backButton)
-              leftView.translatesAutoresizingMaskIntoConstraints = false
-              leftView.heightAnchor.constraint(equalToConstant: 20).isActive = true
-              leftView.widthAnchor.constraint(equalToConstant: 20).isActive = true
-      
+//              leftView.translatesAutoresizingMaskIntoConstraints = false
+//              leftView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+//              leftView.widthAnchor.constraint(equalToConstant: 20).isActive = true
+       
         
         
         
-           backButton.translatesAutoresizingMaskIntoConstraints = false
-           backButton.centerYAnchor.constraint(equalTo: leftView.centerYAnchor).isActive = true
-           backButton.leadingAnchor.constraint(equalTo: leftView.leadingAnchor).isActive = true
-           backButton.topAnchor.constraint(equalTo: leftView.topAnchor).isActive = true
-
-           backButton.bottomAnchor.constraint(equalTo: leftView.bottomAnchor).isActive = true
+//           backButton.translatesAutoresizingMaskIntoConstraints = false
+//           backButton.centerYAnchor.constraint(equalTo: leftView.centerYAnchor).isActive = true
+//           backButton.leadingAnchor.constraint(equalTo: leftView.leadingAnchor).isActive = true
+//           backButton.topAnchor.constraint(equalTo: leftView.topAnchor).isActive = true
+//
+//           backButton.bottomAnchor.constraint(equalTo: leftView.bottomAnchor).isActive = true
            searchController.searchBar.searchTextField.leftView?.frame = CGRect(x: 0, y: 0, width: searchController.searchBar.searchTextField.bounds.height, height: searchController.searchBar.searchTextField.bounds.height)
 
            
