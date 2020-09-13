@@ -17,7 +17,6 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setupNavigationBar()
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createCompositionalLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .systemBackground
@@ -30,6 +29,7 @@ class SearchViewController: UIViewController {
         collectionView.register(SearchResultsCell.self, forCellWithReuseIdentifier: SearchResultsCell.reuseIdentifier)
         createDataSource()
         reloadData()
+       
     }
      
     func configure<T: SelfConfiguringCell>(_ cellType: T.Type, with apartment: Apartment, for indexPath: IndexPath) -> T {
@@ -123,8 +123,6 @@ class SearchViewController: UIViewController {
         let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: layoutGroupSize, subitems: [layoutItem])
               let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
         layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 30, bottom: 0, trailing: -30)
-     
-        
         return layoutSection
     }
     

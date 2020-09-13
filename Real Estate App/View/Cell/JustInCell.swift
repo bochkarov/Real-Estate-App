@@ -48,14 +48,9 @@ class JustInCell: UICollectionViewCell, SelfConfiguringCell {
         adress.textColor = .secondaryLabel
         
         let innerStackView = UIStackView(arrangedSubviews: [pin, adress])
-//        innerStackView.spacing = 0.4
         innerStackView.axis = .horizontal
         innerStackView.distribution = .fillProportionally
-        
-//        innerStackView.setCustomSpacing(0., after: pin)
-        
-        
-        
+  
         let stackView = UIStackView(arrangedSubviews: [imageView, price, size, innerStackView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical

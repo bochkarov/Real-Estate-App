@@ -48,12 +48,9 @@ class FilterButtonsCell: UICollectionViewCell, SelfConfiguringCell {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         contentView.addSubview(stackView)
+        
         NSLayoutConstraint.activate([
             stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-
-
-//            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-//            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])

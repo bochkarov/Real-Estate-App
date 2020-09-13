@@ -13,7 +13,6 @@ class DesignerHomesCell: UICollectionViewCell, SelfConfiguringCell {
     let imageView = UIImageView()
     let label = UILabel(frame: CGRect(x: 0, y: 0, width: 124, height: 23))
     
-    //    let label = UILabel()
     
     override init(frame: CGRect) {
         super .init(frame: frame)
@@ -65,7 +64,7 @@ class DesignerHomesCell: UICollectionViewCell, SelfConfiguringCell {
         let priceAttributedString = NSMutableAttributedString(string:"\(apartment.price)", attributes:redTextColorAttribute)
         startsAtAttributedString.append(priceAttributedString)
         self.label.attributedText = startsAtAttributedString
-
+        
         imageView.image = UIImage(named: apartment.image)
         
     }
