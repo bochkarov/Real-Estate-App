@@ -23,32 +23,15 @@ class SearchViewController: UIViewController {
         collectionView.backgroundColor = .systemBackground
         view.addSubview(collectionView)
         
+        collectionView.register(FilterButtonsCell.self, forCellWithReuseIdentifier: FilterButtonsCell.reuseIdentifier)
+        
         collectionView.register(SearchVCSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchVCSectionHeader.reuseIdentifier)
         
         collectionView.register(SearchResultsCell.self, forCellWithReuseIdentifier: SearchResultsCell.reuseIdentifier)
         createDataSource()
         reloadData()
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        searchBar.becomeFirstResponder()
-    }
-    private func setupNavigationBar() {
-        let searchController = UISearchController()
-        navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.delegate = self
-        searchController.searchBar.placeholder = "Search by Location, Area or Pin Code"
-        if let font = UIFont(name: "Montserrat-Medium", size: 10) {
-            let fontMetrics = UIFontMetrics(forTextStyle: .headline)
-            searchController.searchBar.searchTextField.font = fontMetrics.scaledFont(for: font)
-        }
-        navigationController?.navigationBar.prefersLargeTitles = true
-    }
-    
+     
     func configure<T: SelfConfiguringCell>(_ cellType: T.Type, with apartment: Apartment, for indexPath: IndexPath) -> T {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellType.reuseIdentifier, for: indexPath) as? T else {
             fatalError("Unable to deque \(cellType)")
@@ -60,6 +43,8 @@ class SearchViewController: UIViewController {
     func createDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section,Apartment>(collectionView: collectionView) { collectionView, indexPath, apartment in
             switch self.sections[indexPath.section].type {
+            case "filterButtons":
+                return self.configure(FilterButtonsCell.self, with: apartment, for: indexPath)
             default:
                 return self.configure(SearchResultsCell.self, with: apartment, for: indexPath)
             }
@@ -69,7 +54,6 @@ class SearchViewController: UIViewController {
                   guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SearchVCSectionHeader.reuseIdentifier, for: indexPath) as? SearchVCSectionHeader else {
                       return nil
                   }
-                  
                   guard let firstApp = self?.dataSource?.itemIdentifier(for: indexPath) else { return nil }
                   guard let section = self?.dataSource?.snapshot().sectionIdentifier(containingItem: firstApp) else { return nil }
                   if section.title.isEmpty { return nil }
@@ -95,6 +79,9 @@ class SearchViewController: UIViewController {
             
             let section = self.sections[sectionIndex]
             switch section.type {
+            case "filterButtons":
+                return self.createFilterButtonsSections(using: section)
+                
                 
             default:
                 return self.createSearchResultSection(using: section)
@@ -128,10 +115,19 @@ class SearchViewController: UIViewController {
         return layoutSectionHeader
     }
     
+    func createFilterButtonsSections(using section: Section) -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.93), heightDimension: .fractionalHeight(0.1))
+        let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
+
+        let layoutGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .estimated(300))
+        let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: layoutGroupSize, subitems: [layoutItem])
+              let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
+        layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 30, bottom: 0, trailing: -30)
+     
+        
+        return layoutSection
+    }
+    
     
 }
-extension SearchViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print(searchText)
-    }
-}
+
