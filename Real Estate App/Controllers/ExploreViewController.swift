@@ -9,7 +9,6 @@
 import UIKit
 
 class ExploreViewController: UIViewController {
-    
     let settingsBarButtonItem = UIBarButtonItem(image: UIImage(named: "gear"), style: .plain, target: nil, action: nil)
     let sections = Bundle.main.decode([Section].self, from: "realestate.json")
     var collectionView: UICollectionView!
@@ -32,7 +31,15 @@ class ExploreViewController: UIViewController {
         setupNavigationBar()
         createDataSource()
         reloadData()
+   
     }
+ 
+
+
+    
+ 
+
+
     
     func configure<T: SelfConfiguringCell>(_ cellType: T.Type, with apartment: Apartment, for indexPath: IndexPath) -> T {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellType.reuseIdentifier, for: indexPath) as? T else {
@@ -44,13 +51,23 @@ class ExploreViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
+       
+
+        
+self.navigationController!.navigationBar.largeTitleTextAttributes = [.font: UIFont.systemFont(ofSize: 10)]
+        navigationItem.title = "Title"
         navigationItem.searchController = searchController
+        navigationController?.navigationBar.shadowImage = UIImage()
         navigationItem.hidesSearchBarWhenScrolling = false
         searchController.hidesNavigationBarDuringPresentation = true
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.showsSearchResultsController = true
         searchController.searchBar.showsCancelButton = false
         searchController.searchBar.delegate = self
+        searchController.searchBar.backgroundColor = .white
+        searchController.searchBar.searchTextField.borderStyle = .none
+        searchController.searchBar.searchTextField.layer.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.9725490196, blue: 0.9725490196, alpha: 1)
+        searchController.searchBar.searchTextField.layer.cornerRadius = 10
         searchController.searchBar.placeholder = "Search by Location, Area or Pin Code"
         if let font = UIFont(name: "Montserrat-Medium", size: 10) {
             let fontMetrics = UIFontMetrics(forTextStyle: .headline)
@@ -85,7 +102,7 @@ class ExploreViewController: UIViewController {
         locationButton.semanticContentAttribute = .forceRightToLeft
         let innerNavStackview = UIStackView(arrangedSubviews: [locationLabel, locationButton])
         innerNavStackview.axis = .vertical
-        innerNavStackview.setCustomSpacing(4, after: locationLabel)
+        innerNavStackview.setCustomSpacing(3, after: locationLabel)
         let leftNavStackView = UIStackView(arrangedSubviews: [pin, innerNavStackview])
         leftNavStackView.setCustomSpacing(10, after: pin)
         let leftBarButtonItem = UIBarButtonItem(customView: leftNavStackView)
@@ -186,6 +203,7 @@ extension ExploreViewController {
 extension ExploreViewController: UISearchBarDelegate {
 
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        
         let backButton = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
         backButton.setImage(UIImage(named: "back"), for: .normal)
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)

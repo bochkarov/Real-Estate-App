@@ -17,8 +17,9 @@ class SectionHeader: UICollectionReusableView {
     override init(frame: CGRect) {
         super .init(frame: frame)
         if let font = UIFont(name: "Montserrat-Bold", size: 20) {
-            let fontMetrics = UIFontMetrics(forTextStyle: .headline)
-            title.font = fontMetrics.scaledFont(for: font)
+//            let fontMetrics = UIFontMetrics(forTextStyle: .headline)
+            title.font = font
+            title.textColor = #colorLiteral(red: 0.2117647059, green: 0.2117647059, blue: 0.2117647059, alpha: 1)
         }
         
         if let font = UIFont(name: "Montserrat-SemiBold", size: 12) {

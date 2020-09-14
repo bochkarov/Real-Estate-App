@@ -31,6 +31,14 @@ class SearchViewController: UIViewController {
         reloadData()
        
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(false)
+        print("viewDidAppear")
+
+        UIView.animate(withDuration: 5, delay: 5, options: .autoreverse, animations: {
+            self.view.alpha = 1
+        })
+    }
      
     func configure<T: SelfConfiguringCell>(_ cellType: T.Type, with apartment: Apartment, for indexPath: IndexPath) -> T {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellType.reuseIdentifier, for: indexPath) as? T else {
@@ -122,7 +130,7 @@ class SearchViewController: UIViewController {
         let layoutGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .estimated(300))
         let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: layoutGroupSize, subitems: [layoutItem])
               let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
-        layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 30, bottom: 0, trailing: -30)
+        layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 30, bottom: 20, trailing: -30)
         return layoutSection
     }
     

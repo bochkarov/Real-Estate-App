@@ -41,8 +41,7 @@ class SearchVCSectionHeader: UICollectionReusableView {
                 stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
                 stackView.topAnchor.constraint(equalTo: topAnchor),
                 stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-                stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20
-                )
+                stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
             ])
         }
         required init?(coder: NSCoder) {
