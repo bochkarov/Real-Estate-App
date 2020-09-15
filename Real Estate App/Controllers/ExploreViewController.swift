@@ -21,6 +21,8 @@ class ExploreViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+          
+   
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createCompositionalLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .systemBackground
@@ -54,11 +56,14 @@ class ExploreViewController: UIViewController {
        
 
         
+        
+        
 self.navigationController!.navigationBar.largeTitleTextAttributes = [.font: UIFont.systemFont(ofSize: 10)]
-        navigationItem.title = "Title"
+//        navigationItem.title = "Title"
         navigationItem.searchController = searchController
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationItem.hidesSearchBarWhenScrolling = false
+        navigationController?.navigationBar.backgroundColor = .white
         searchController.hidesNavigationBarDuringPresentation = true
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.showsSearchResultsController = true
@@ -82,7 +87,7 @@ self.navigationController!.navigationBar.largeTitleTextAttributes = [.font: UIFo
         searchController.searchBar.setImage(UIImage(named: "clear"), for: .clear, state: .normal)
         settingsBarButtonItem.tintColor = .black
         navigationItem.rightBarButtonItem = settingsBarButtonItem
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.prefersLargeTitles = false
         pin.image = UIImage(named: "pin20")
         pin.clipsToBounds = true
         pin.contentMode = .center

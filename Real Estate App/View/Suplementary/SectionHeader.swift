@@ -23,8 +23,8 @@ class SectionHeader: UICollectionReusableView {
         }
         
         if let font = UIFont(name: "Montserrat-SemiBold", size: 12) {
-            let fontMetrics = UIFontMetrics(forTextStyle: .title1)
-            button.titleLabel?.font = fontMetrics.scaledFont(for: font)
+//            let fontMetrics = UIFontMetrics(forTextStyle: .title1)
+            button.titleLabel?.font = font
         }
         
         button.setTitle("View All", for: .normal)
