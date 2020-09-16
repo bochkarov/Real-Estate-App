@@ -17,13 +17,11 @@ class SearchVCSectionHeader: UICollectionReusableView {
         override init(frame: CGRect) {
             super .init(frame: frame)
             if let font = UIFont(name: "Montserrat-Bold", size: 20) {
-                let fontMetrics = UIFontMetrics(forTextStyle: .headline)
-                title.font = fontMetrics.scaledFont(for: font)
+                title.font = font
             }
             
             if let font = UIFont(name: "Montserrat-SemiBold", size: 12) {
-                let fontMetrics = UIFontMetrics(forTextStyle: .title1)
-                button.titleLabel?.font = fontMetrics.scaledFont(for: font)
+                button.titleLabel?.font = font
             }
             
             button.setTitle("Sort ", for: .normal)

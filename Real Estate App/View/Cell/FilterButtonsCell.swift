@@ -30,8 +30,7 @@ class FilterButtonsCell: UICollectionViewCell, SelfConfiguringCell {
             button.contentEdgeInsets = UIEdgeInsets(top: 7, left: 10, bottom: 7, right: 10)
 
             if let font = UIFont(name: "Montserrat-SemiBold", size: 12) {
-                let fontMetrics = UIFontMetrics(forTextStyle: .title1)
-                button.titleLabel?.font = fontMetrics.scaledFont(for: font)
+                button.titleLabel?.font = font
             }
         }
         distButton.layer.borderColor = #colorLiteral(red: 0.4588235294, green: 0.4588235294, blue: 0.7921568627, alpha: 1)

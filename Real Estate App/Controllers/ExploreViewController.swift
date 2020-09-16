@@ -75,8 +75,7 @@ self.navigationController!.navigationBar.largeTitleTextAttributes = [.font: UIFo
         searchController.searchBar.searchTextField.layer.cornerRadius = 10
         searchController.searchBar.placeholder = "Search by Location, Area or Pin Code"
         if let font = UIFont(name: "Montserrat-Medium", size: 10) {
-            let fontMetrics = UIFontMetrics(forTextStyle: .headline)
-            searchController.searchBar.searchTextField.font = fontMetrics.scaledFont(for: font)
+            searchController.searchBar.searchTextField.font = font
         }
         let searchBar = searchController.searchBar
         let searchTextField:UITextField = searchBar.value(forKey: "searchField") as! UITextField
@@ -92,14 +91,12 @@ self.navigationController!.navigationBar.largeTitleTextAttributes = [.font: UIFo
         pin.clipsToBounds = true
         pin.contentMode = .center
         if let font = UIFont(name: "Montserrat-Medium", size: 10) {
-            let fontMetrics = UIFontMetrics(forTextStyle: .title1)
-            locationLabel.font = fontMetrics.scaledFont(for: font)
+            locationLabel.font = font
         }
         locationLabel.textColor = #colorLiteral(red: 0.6941176471, green: 0.6784313725, blue: 0.6784313725, alpha: 1)
         locationLabel.text = "Location"
         if let font = UIFont(name: "Montserrat-SemiBold", size: 14) {
-            let fontMetrics = UIFontMetrics(forTextStyle: .title1)
-            locationButton.titleLabel?.font = fontMetrics.scaledFont(for: font)
+            locationButton.titleLabel?.font = font
         }
         locationButton.setTitle("Woodbridge ", for: .normal)
         locationButton.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)

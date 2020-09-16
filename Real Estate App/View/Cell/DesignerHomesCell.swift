@@ -21,8 +21,7 @@ class DesignerHomesCell: UICollectionViewCell, SelfConfiguringCell {
         
         
         if let font = UIFont(name: "Montserrat-Medium", size: 10) {
-            let fontMetrics = UIFontMetrics(forTextStyle: .headline)
-            label.font = fontMetrics.scaledFont(for: font)
+            label.font = font
         }
         label.textColor = .black
         label.textAlignment = .center

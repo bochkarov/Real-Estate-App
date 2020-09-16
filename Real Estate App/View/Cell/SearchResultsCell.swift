@@ -29,20 +29,17 @@ class SearchResultsCell: UICollectionViewCell, SelfConfiguringCell {
         pin.contentMode = .left
         
         if let font = UIFont(name: "Montserrat-SemiBold", size: 16) {
-            let fontMetrics = UIFontMetrics(forTextStyle: .title1)
-            price.font = fontMetrics.scaledFont(for: font)
+            price.font = font
         }
         price.textColor = #colorLiteral(red: 0.862745098, green: 0.1843137255, blue: 0.1843137255, alpha: 1)
         
         if let font = UIFont(name: "Montserrat-Medium", size: 12) {
-            let fontMetrics = UIFontMetrics(forTextStyle: .title2)
-            size.font = fontMetrics.scaledFont(for: font)
+            size.font = font
         }
         size.textColor = .black
         
         if let font = UIFont(name: "Montserrat-Medium", size: 10) {
-            let fontMetrics = UIFontMetrics(forTextStyle: .title3)
-            adress.font = fontMetrics.scaledFont(for: font)
+            adress.font = font
         }
         adress.textColor = .secondaryLabel
         

@@ -30,20 +30,17 @@ class JustInCell: UICollectionViewCell, SelfConfiguringCell {
 
         
         if let font = UIFont(name: "Montserrat-SemiBold", size: 16) {
-            let fontMetrics = UIFontMetrics(forTextStyle: .title1)
-            price.font = fontMetrics.scaledFont(for: font)
+            price.font = font
         }
         price.textColor = #colorLiteral(red: 0.2117647059, green: 0.2117647059, blue: 0.2117647059, alpha: 1)
 
         if let font = UIFont(name: "Montserrat-Medium", size: 12) {
-            let fontMetrics = UIFontMetrics(forTextStyle: .title2)
-            size.font = fontMetrics.scaledFont(for: font)
+            size.font = font
         }
         size.textColor = .secondaryLabel
 
         if let font = UIFont(name: "Montserrat-Medium", size: 10) {
-            let fontMetrics = UIFontMetrics(forTextStyle: .title3)
-            adress.font = fontMetrics.scaledFont(for: font)
+            adress.font = font
         }
         adress.textColor = .secondaryLabel
         
