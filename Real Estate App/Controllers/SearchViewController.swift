@@ -103,7 +103,7 @@ class SearchViewController: UIViewController {
     }
     
     func createSearchResultSection(using section: Section) -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.93))
         let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
          layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 30, trailing: 10)
         let layoutGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(240))
@@ -136,7 +136,7 @@ class SearchViewController: UIViewController {
               let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
     
     
-//        layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 30, bottom: 40, trailing: -30)
+        layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 16, trailing: 0)
         return layoutSection
     }
     
