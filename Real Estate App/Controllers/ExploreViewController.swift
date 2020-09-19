@@ -54,12 +54,7 @@ class ExploreViewController: UIViewController {
     
     private func setupNavigationBar() {
        
-
-        
-        
-        
-self.navigationController!.navigationBar.largeTitleTextAttributes = [.font: UIFont.systemFont(ofSize: 10)]
-//        navigationItem.title = "Title"
+       
         navigationItem.searchController = searchController
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationItem.hidesSearchBarWhenScrolling = false
@@ -74,6 +69,8 @@ self.navigationController!.navigationBar.largeTitleTextAttributes = [.font: UIFo
         searchController.searchBar.searchTextField.layer.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.9725490196, blue: 0.9725490196, alpha: 1)
         searchController.searchBar.searchTextField.layer.cornerRadius = 10
         searchController.searchBar.placeholder = "Search by Location, Area or Pin Code"
+        searchController.searchBar.translatesAutoresizingMaskIntoConstraints = false
+        
         if let font = UIFont(name: "Montserrat-Medium", size: 10) {
             searchController.searchBar.searchTextField.font = font
         }
@@ -86,7 +83,7 @@ self.navigationController!.navigationBar.largeTitleTextAttributes = [.font: UIFo
         searchController.searchBar.setImage(UIImage(named: "clear"), for: .clear, state: .normal)
         settingsBarButtonItem.tintColor = .black
         navigationItem.rightBarButtonItem = settingsBarButtonItem
-        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.navigationBar.prefersLargeTitles = true
         pin.image = UIImage(named: "pin20")
         pin.clipsToBounds = true
         pin.contentMode = .center
@@ -213,10 +210,14 @@ extension ExploreViewController: UISearchBarDelegate {
         leftView.contentMode = .scaleAspectFill
         leftView.addSubview(backButton)
         searchController.searchBar.searchTextField.leftView = leftView
+   
     }
     
     @objc func backButtonTapped() {
         searchController.isActive = false
         searchController.searchBar.searchTextField.leftView = .none
     }
+    
 }
+
+

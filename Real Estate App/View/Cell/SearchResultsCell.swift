@@ -27,6 +27,7 @@ class SearchResultsCell: UICollectionViewCell, SelfConfiguringCell {
         pin.image = UIImage(named: "pin")
         pin.clipsToBounds = true
         pin.contentMode = .left
+        pin.translatesAutoresizingMaskIntoConstraints = false
         
         if let font = UIFont(name: "Montserrat-SemiBold", size: 16) {
             price.font = font
@@ -37,6 +38,9 @@ class SearchResultsCell: UICollectionViewCell, SelfConfiguringCell {
             size.font = font
         }
         size.textColor = .black
+        size.sizeToFit()
+        size.translatesAutoresizingMaskIntoConstraints = false
+        size.widthAnchor.constraint(equalToConstant: 200).isActive = true
         
         if let font = UIFont(name: "Montserrat-Medium", size: 10) {
             adress.font = font
@@ -51,6 +55,8 @@ class SearchResultsCell: UICollectionViewCell, SelfConfiguringCell {
         adressSizeStackView.axis = .vertical
         adressSizeStackView.distribution = .fillProportionally
         adressSizeStackView.spacing = 10
+        
+        
         
         let adressSizePriceStackView = UIStackView(arrangedSubviews: [adressSizeStackView, price])
         adressSizePriceStackView.axis = .horizontal
