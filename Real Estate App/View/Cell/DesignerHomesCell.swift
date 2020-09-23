@@ -11,7 +11,7 @@ import UIKit
 class DesignerHomesCell: UICollectionViewCell, SelfConfiguringCell {
     static var reuseIdentifier: String = "DesignerHomesCell"
     let imageView = UIImageView()
-    let label = UILabel(frame: CGRect(x: 0, y: 0, width: 124, height: 23))
+    let label = UILabel()
     
     
     override init(frame: CGRect) {
