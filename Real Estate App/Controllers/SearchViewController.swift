@@ -8,20 +8,33 @@
 
 import UIKit
 
+enum TagType {
+    case luxury
+    case schools
+}
+
 class SearchViewController: UIViewController {
     let searchBar = UISearchBar()
     let sections = Bundle.main.decode([Section].self, from: "searchResults.json")
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Apartment>?
-    
+    var pickedTegs: [TagType] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createCompositionalLayout())
+        view.backgroundColor = .systemBackground
+        
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCompositionalLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .systemBackground
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(collectionView)
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
         
         collectionView.register(FilterButtonsCell.self, forCellWithReuseIdentifier: FilterButtonsCell.reuseIdentifier)
         
@@ -36,9 +49,9 @@ class SearchViewController: UIViewController {
         super.viewDidAppear(false)
         print("viewDidAppear")
 
-        UIView.animate(withDuration: 5, delay: 5, options: .autoreverse, animations: {
-            self.view.alpha = 1
-        })
+//        UIView.animate(withDuration: 5, delay: 5, options: .autoreverse, animations: {
+//            self.view.alpha = 1
+//        })
     }
      
     func configure<T: SelfConfiguringCell>(_ cellType: T.Type, with apartment: Apartment, for indexPath: IndexPath) -> T {
@@ -77,6 +90,12 @@ class SearchViewController: UIViewController {
         
         for section in sections {
             snapshot.appendItems(section.items, toSection: section)
+            
+            var filteredItems: [String] = []
+            if pickedTegs.containt(section.items[3].tag) {
+                filteredItems.append(section.items[3])
+            }
+            snapshot.appendItems(filteredItems, toSection: section)
         }
         
         dataSource?.apply(snapshot)
@@ -143,3 +162,10 @@ class SearchViewController: UIViewController {
     
 }
 
+extension SearchViewController: SearchVCDelegate {
+    func buttonPressed(tag: String) {
+        // 1. String -> TagType
+        // 2. pickedTegs.append(tag)
+        // 3. reloadData()
+    }
+}
