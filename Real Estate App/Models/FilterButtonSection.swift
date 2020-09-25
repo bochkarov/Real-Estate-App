@@ -1,15 +1,15 @@
 //
-//  Section.swift
+//  FilterButtonSection.swift
 //  Real Estate App
 //
-//  Created by Bochkarov Valentyn on 04/09/2020.
+//  Created by Bochkarov Valentyn on 25/09/2020.
 //  Copyright © 2020 Bochkarov Valentyn. All rights reserved.
 //
 
 import Foundation
-struct Section: Decodable, Hashable {
+struct FilterButtonSection: Decodable, Hashable {
     let id: Int
     let type: String
     let title: String
-    let items: [Apartment]
+    let filters: [FilterButton]
 }

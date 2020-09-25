@@ -8,35 +8,36 @@
 
 import UIKit
 
-class FilterButtonCell: UICollectionViewCell {
-    
-    let luxButton = UIButton(type: .custom)
-    
-    weak var delegate: SearchVCDelegate?
-    
-    var something: Something? = nil
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        // custize
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func configure(with something: Something) {
-        self.something = something
-        luxButton.setTitle(something.tagName, for: .normal)
-        luxButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-    }
-    
-    @objc func buttonPressed() {
-        delegate.buttonPressed(tag: something.tagName)
-    }
-    
-}
+
+//class FilterButtonCell: UICollectionViewCell {
+//    
+//    let luxButton = UIButton(type: .custom)
+//    
+//    weak var delegate: SearchVCDelegate?
+//    
+//    var something: Something? = nil
+//    
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//        
+//        // custize
+//    }
+//    
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+//    
+//    func configure(with something: Something) {
+//        self.something = something
+//        luxButton.setTitle(something.tagName, for: .normal)
+//        luxButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+//    }
+//    
+//    @objc func buttonPressed() {
+//        delegate.buttonPressed(tag: something.tagName)
+//    }
+//    
+//}
 
 class FilterButtonsCell: UICollectionViewCell, SelfConfiguringCell {
     static var reuseIdentifier: String = "FilterButtonsCell"

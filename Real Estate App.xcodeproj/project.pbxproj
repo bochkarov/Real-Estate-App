@@ -12,6 +12,9 @@
 		BE74087F2502CBB900BFC2B5 /* realestate.json in Resources */ = {isa = PBXBuildFile; fileRef = BE74087E2502CBB900BFC2B5 /* realestate.json */; };
 		BE7408812502CDA700BFC2B5 /* Apartment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7408802502CDA700BFC2B5 /* Apartment.swift */; };
 		BE7408842502CE7400BFC2B5 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7408832502CE7400BFC2B5 /* Section.swift */; };
+		BE7C76D9251E870C007E054A /* FilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7C76D8251E870C007E054A /* FilterButton.swift */; };
+		BE7C76DD251E89F1007E054A /* FilterButtonSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7C76DC251E89F1007E054A /* FilterButtonSection.swift */; };
+		BE7C76E0251E8A7D007E054A /* searchResultsFilters.json in Resources */ = {isa = PBXBuildFile; fileRef = BE7C76DF251E8A7D007E054A /* searchResultsFilters.json */; };
 		BE8D44C0250E413E0063401C /* FilterButtonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE8D44BF250E413E0063401C /* FilterButtonsCell.swift */; };
 		BE97912725017DC700FF9D66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE97912625017DC700FF9D66 /* AppDelegate.swift */; };
 		BE97912925017DC700FF9D66 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE97912825017DC700FF9D66 /* SceneDelegate.swift */; };
@@ -42,6 +45,9 @@
 		BE74087E2502CBB900BFC2B5 /* realestate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = realestate.json; sourceTree = SOURCE_ROOT; };
 		BE7408802502CDA700BFC2B5 /* Apartment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apartment.swift; sourceTree = "<group>"; };
 		BE7408832502CE7400BFC2B5 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		BE7C76D8251E870C007E054A /* FilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButton.swift; sourceTree = "<group>"; };
+		BE7C76DC251E89F1007E054A /* FilterButtonSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButtonSection.swift; sourceTree = "<group>"; };
+		BE7C76DF251E8A7D007E054A /* searchResultsFilters.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = searchResultsFilters.json; sourceTree = "<group>"; };
 		BE8D44BF250E413E0063401C /* FilterButtonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButtonsCell.swift; sourceTree = "<group>"; };
 		BE97912325017DC700FF9D66 /* Real Estate App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Real Estate App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE97912625017DC700FF9D66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +99,8 @@
 			children = (
 				BE7408802502CDA700BFC2B5 /* Apartment.swift */,
 				BE7408832502CE7400BFC2B5 /* Section.swift */,
+				BE7C76DC251E89F1007E054A /* FilterButtonSection.swift */,
+				BE7C76D8251E870C007E054A /* FilterButton.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -126,6 +134,7 @@
 				BE97912A25017DC700FF9D66 /* ViewController.swift */,
 				BE97912C25017DC700FF9D66 /* Main.storyboard */,
 				BE97912F25017DC900FF9D66 /* Assets.xcassets */,
+				BE7C76DF251E8A7D007E054A /* searchResultsFilters.json */,
 				BEFCA1312504ECD600C3E31B /* searchResults.json */,
 				BE74087E2502CBB900BFC2B5 /* realestate.json */,
 				BE97913125017DC900FF9D66 /* LaunchScreen.storyboard */,
@@ -249,6 +258,7 @@
 				BEF578DC2502DFF3008E8D5C /* Montserrat-SemiBold.ttf in Resources */,
 				BEFCA1322504ECD600C3E31B /* searchResults.json in Resources */,
 				BEEE1720250418FD00ADF35F /* Montserrat-Bold.ttf in Resources */,
+				BE7C76E0251E8A7D007E054A /* searchResultsFilters.json in Resources */,
 				BE74087F2502CBB900BFC2B5 /* realestate.json in Resources */,
 				BE97913B2501809500FF9D66 /* Montserrat-Medium.ttf in Resources */,
 				BE97912E25017DC700FF9D66 /* Main.storyboard in Resources */,
@@ -262,7 +272,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE7C76DD251E89F1007E054A /* FilterButtonSection.swift in Sources */,
 				BE979141250182D200FF9D66 /* SavedViewController.swift in Sources */,
+				BE7C76D9251E870C007E054A /* FilterButton.swift in Sources */,
 				BE97912B25017DC700FF9D66 /* ViewController.swift in Sources */,
 				BE3A028E2503C6D4001CF633 /* SectionHeader.swift in Sources */,
 				BEFCA13625055EEB00C3E31B /* SearchVCSectionHeader.swift in Sources */,

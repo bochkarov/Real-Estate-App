@@ -16,6 +16,7 @@ enum TagType {
 class SearchViewController: UIViewController {
     let searchBar = UISearchBar()
     let sections = Bundle.main.decode([Section].self, from: "searchResults.json")
+    let filters = Bundle.main.decode([FilterButtonSection].self, from: "searchResultsFilters.json")
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Apartment>?
     var pickedTegs: [TagType] = []
@@ -23,6 +24,11 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        filters.map { (filter) in
+            filter.filters.map { (button) in
+                print(button.tagName)
+            }
+        }
         
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCompositionalLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -91,11 +97,11 @@ class SearchViewController: UIViewController {
         for section in sections {
             snapshot.appendItems(section.items, toSection: section)
             
-            var filteredItems: [String] = []
-            if pickedTegs.containt(section.items[3].tag) {
-                filteredItems.append(section.items[3])
-            }
-            snapshot.appendItems(filteredItems, toSection: section)
+//            var filteredItems: [String] = []
+//            if pickedTegs.containt(section.items[3].tag) {
+//                filteredItems.append(section.items[3])
+//            }
+//            snapshot.appendItems(filteredItems, toSection: section)
         }
         
         dataSource?.apply(snapshot)
@@ -109,8 +115,6 @@ class SearchViewController: UIViewController {
             switch section.type {
             case "filterButtons":
                 return self.createFilterButtonsSections(using: section)
-                
-                
             default:
                 return self.createSearchResultSection(using: section)
             }
@@ -162,10 +166,10 @@ class SearchViewController: UIViewController {
     
 }
 
-extension SearchViewController: SearchVCDelegate {
-    func buttonPressed(tag: String) {
-        // 1. String -> TagType
-        // 2. pickedTegs.append(tag)
-        // 3. reloadData()
-    }
-}
+//extension SearchViewController: SearchVCDelegate {
+//    func buttonPressed(tag: String) {
+//        // 1. String -> TagType
+//        // 2. pickedTegs.append(tag)
+//        // 3. reloadData()
+//    }
+//}

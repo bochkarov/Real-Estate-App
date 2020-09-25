@@ -1,28 +1,11 @@
 [
     {
         "id": 1,
-        "type": "filterButtons",
-        "title": "Tags",
-        "items": [
-            {
-                "id": 2,
-                "tagName": "Luxury",
-                "color": "green",
-            },
-            {
-                "id": 3,
-                "tagName": "Schools",
-                "color": "blue",
-            }
-        ]
-    },
-    {
-        "id": 2,
         "type": "searchResults",
         "title": "32 Results Found",
         "items": [
             {
-                "id": 5,
+                "id": 1,
                 "price": "$1,291",
                 "size": "400 sq.ft • 1 Bed • 1 Bath",
                 "adress": "5th Avenue",
@@ -31,40 +14,45 @@
             
             },
             {
-                "id": 6,
+                "id": 2,
                 "price": "$4,999",
                 "size": "1400 sq.ft • 5 Bed • 2 Bath",
                 "adress": "209 & 10th St #8",
-                "image": "apparts2"
+                "image": "apparts2",
+                "tag": "Schools"
             },
             {
-                "id": 7,
+                "id": 3,
                 "price": "$2,952",
                 "size": "1000 sq.ft • 3 Bed • 1 Bath",
                 "adress": "252 1st Avenue",
-                "image": "apparts3"
+                "image": "apparts3",
+                "tag": "Security"
             },
             {
-                "id": 8,
+                "id": 4,
                 "price": "$5,299",
                 "size": "1450 sq.ft • 6 Bed • 2 Bath",
                 "adress": "252 1st Avenue",
-                "image": "apparts4"
+                "image": "apparts4",
+                "tag": "Luxury"
                 
             },
             {
-                "id": 9,
+                "id": 5,
                 "price": "$4,999",
                 "size": "1300 sq.ft • 3 Bed • 1 Bath",
                 "adress": "209 & 10th St #8",
-                "image": "apparts5"
+                "image": "apparts5",
+                "tag": "Within 2mi"
             },
             {
-                "id": 10,
+                "id": 6,
                 "price": "$2,952",
                 "size": "1000 sq.ft • 3 Bed • 1 Bath",
                 "adress": "252 1st Avenue",
-                "image": "apparts2"
+                "image": "apparts2",
+                "tag": "Within 2mi"
             }
         ]
     }
