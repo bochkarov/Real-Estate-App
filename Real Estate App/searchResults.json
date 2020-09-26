@@ -1,11 +1,40 @@
-[
+[ {
+    "id": 1,
+    "type": "filterButtons",
+    "title": "Tags",
+    "items": [],
+    "filters": [
+        {
+            "id": 1,
+            "tagName": "Within 2mi",
+            "color": "green",
+        },
+        {
+            "id": 2,
+            "tagName": "Luxury",
+            "color": "blue",
+        },
+        {
+            "id": 3,
+            "tagName": "Schools",
+            "color": "blue",
+        },
+        {
+            "id": 4,
+            "tagName": "Security",
+            "color": "blue",
+        }
+    ]
+},
+    
     {
-        "id": 1,
+        "id": 2,
         "type": "searchResults",
         "title": "32 Results Found",
+        "filters": [],
         "items": [
             {
-                "id": 1,
+                "id": 5,
                 "price": "$1,291",
                 "size": "400 sq.ft • 1 Bed • 1 Bath",
                 "adress": "5th Avenue",
@@ -14,7 +43,7 @@
             
             },
             {
-                "id": 2,
+                "id": 6,
                 "price": "$4,999",
                 "size": "1400 sq.ft • 5 Bed • 2 Bath",
                 "adress": "209 & 10th St #8",
@@ -22,7 +51,7 @@
                 "tag": "Schools"
             },
             {
-                "id": 3,
+                "id": 7,
                 "price": "$2,952",
                 "size": "1000 sq.ft • 3 Bed • 1 Bath",
                 "adress": "252 1st Avenue",
@@ -30,7 +59,7 @@
                 "tag": "Security"
             },
             {
-                "id": 4,
+                "id": 8,
                 "price": "$5,299",
                 "size": "1450 sq.ft • 6 Bed • 2 Bath",
                 "adress": "252 1st Avenue",
@@ -39,7 +68,7 @@
                 
             },
             {
-                "id": 5,
+                "id": 9,
                 "price": "$4,999",
                 "size": "1300 sq.ft • 3 Bed • 1 Bath",
                 "adress": "209 & 10th St #8",
@@ -47,7 +76,7 @@
                 "tag": "Within 2mi"
             },
             {
-                "id": 6,
+                "id": 10,
                 "price": "$2,952",
                 "size": "1000 sq.ft • 3 Bed • 1 Bath",
                 "adress": "252 1st Avenue",

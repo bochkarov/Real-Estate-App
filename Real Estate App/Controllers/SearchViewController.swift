@@ -16,16 +16,19 @@ enum TagType {
 class SearchViewController: UIViewController {
     let searchBar = UISearchBar()
     let sections = Bundle.main.decode([Section].self, from: "searchResults.json")
-    let filters = Bundle.main.decode([FilterButtonSection].self, from: "searchResultsFilters.json")
     var collectionView: UICollectionView!
-    var dataSource: UICollectionViewDiffableDataSource<Section, Apartment>?
+    
+    
+//    var dataSource: UICollectionViewDiffableDataSource<Section, Apartment>?
+    
+    var dataSource: UICollectionViewDiffableDataSource<Section, AnyHashable>?
     var pickedTegs: [TagType] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        filters.map { (filter) in
-            filter.filters.map { (button) in
+        sections.map { (filters) in
+            filters.filters.map { (button) in
                 print(button.tagName)
             }
         }
@@ -68,15 +71,40 @@ class SearchViewController: UIViewController {
         return cell
     }
     
+    
+    
     func createDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Section,Apartment>(collectionView: collectionView) { collectionView, indexPath, apartment in
-            switch self.sections[indexPath.section].type {
-            case "filterButtons":
-                return self.configure(FilterButtonsCell.self, with: apartment, for: indexPath)
-            default:
-                return self.configure(SearchResultsCell.self, with: apartment, for: indexPath)
+         dataSource = UICollectionViewDiffableDataSource<Section, AnyHashable> (collectionView: collectionView) { collectionView, indexPath, item in
+            
+            if let apartment = item as? Apartment {
+//                switch self.sections[indexPath.section].type {
+//                      case "filterButtons":
+//                          return self.configure(FilterButtonsCell.self, with: apartment, for: indexPath)
+//                      default:
+                          return self.configure(SearchResultsCell.self, with: apartment, for: indexPath)
+//                      }
             }
+            if let filterButton = item as? FilterButton {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterButtonsCell.reuseIdentifier, for: indexPath)
+            
+            
+                return cell
+            }
+            
+            fatalError()
         }
+
+        
+        
+        
+//        dataSource = UICollectionViewDiffableDataSource<Section,Apartment>(collectionView: collectionView) { collectionView, indexPath, apartment in
+//            switch self.sections[indexPath.section].type {
+//            case "filterButtons":
+//                return self.configure(FilterButtonsCell.self, with: apartment, for: indexPath)
+//            default:
+//                return self.configure(SearchResultsCell.self, with: apartment, for: indexPath)
+//            }
+//        }
         dataSource?.supplementaryViewProvider = { [weak self]
                   collectionView, kind, indexPath in
                   guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SearchVCSectionHeader.reuseIdentifier, for: indexPath) as? SearchVCSectionHeader else {
@@ -91,7 +119,8 @@ class SearchViewController: UIViewController {
               }
     }
     func reloadData() {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Apartment>()
+//        var snapshot = NSDiffableDataSourceSnapshot<Section, Apartment>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section, AnyHashable>()
         snapshot.appendSections(sections)
         
         for section in sections {

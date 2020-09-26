@@ -12,4 +12,5 @@ struct Section: Decodable, Hashable {
     let type: String
     let title: String
     let items: [Apartment]
+    let filters: [FilterButton]
 }

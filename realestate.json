@@ -3,6 +3,7 @@
         "id": 1,
         "type": "justIn",
         "title": "Just In",
+        "filters": [],
         "items": [
             {
                 "id": 1,
@@ -31,6 +32,7 @@
         "id": 2,
         "type": "designerHomes",
         "title": "Designer Homes",
+        "filters": [],
         "items": [
             {
                 "id": 4,
@@ -59,6 +61,7 @@
         "id": 3,
         "type": "justIn",
         "title": "Near You",
+        "filters": [],
         "items": [
             {
                 "id": 7,

@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "type": "filterButtons",
+        "title": "Tags",
+        "filters": [
+            {
+                "id": 1,
+                "tagName": "Within 2mi",
+                "color": "green",
+            },
+            {
+                "id": 2,
+                "tagName": "Luxury",
+                "color": "blue",
+            },
+            {
+                "id": 3,
+                "tagName": "Schools",
+                "color": "blue",
+            },
+            {
+                "id": 4,
+                "tagName": "Security",
+                "color": "blue",
+            },
+        ]
+    }
+]
