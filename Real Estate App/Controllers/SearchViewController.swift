@@ -17,23 +17,16 @@ class SearchViewController: UIViewController {
     let searchBar = UISearchBar()
     let sections = Bundle.main.decode([Section].self, from: "searchResults.json")
     var collectionView: UICollectionView!
-    
-    
-//    var dataSource: UICollectionViewDiffableDataSource<Section, Apartment>?
-    
     var dataSource: UICollectionViewDiffableDataSource<Section, AnyHashable>?
-    var pickedTegs: [TagType] = []
+//    var pickedTags: [TagType] = []
+    var pickedTag: String? = nil
+    let filterButtonCell = FilterButtonsCell()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        print(sections)
-        sections.map { (filters) in
-            filters.filters.map { (button) in
-                print(button.tagName)
-            }
-        }
-        
+        filterButtonCell.delegate = self
+    
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCompositionalLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .systemBackground
@@ -58,6 +51,7 @@ class SearchViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
         print("viewDidAppear")
+        
 
 //        UIView.animate(withDuration: 5, delay: 5, options: .autoreverse, animations: {
 //            self.view.alpha = 1
@@ -137,12 +131,25 @@ class SearchViewController: UIViewController {
         snapshot.appendSections(sections)
         
         for section in sections {
-            snapshot.appendItems(section.items, toSection: section)
+//
             snapshot.appendItems(section.filters, toSection: section)
             
+            
+            if pickedTag != nil {
+                let items = section.items
+                let filterdItems = items.filter { $0.tag.contains("Luxury") }
+                print(filterdItems)
+                snapshot.appendItems(filterdItems, toSection: section)
+            } else {
+                snapshot.appendItems(section.items, toSection: section)
+            }
+           
+            
+//            pickedTags = ["luxury", "schools"]
 //            var filteredItems: [String] = []
-//            if pickedTegs.containt(section.items[3].tag) {
-//                filteredItems.append(section.items[3])
+//            
+//            if pickedTags.contains(section.items[3].tag) {
+//                filteredItems.append(section.items)
 //            }
 //            snapshot.appendItems(filteredItems, toSection: section)
         }
@@ -201,13 +208,18 @@ class SearchViewController: UIViewController {
               let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
         layoutSection.orthogonalScrollingBehavior = .continuous
 
-    
-    
         layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 16, trailing: 0)
         return layoutSection
     }
-    
-    
+}
+
+extension SearchViewController: FilterButtonsCellDelegate {
+    func buttonPressed(tag: String) {
+        print("Hello")
+        pickedTag = tag
+        print(tag)
+        reloadData()
+    }
 }
 
 //extension SearchViewController: SearchVCDelegate {

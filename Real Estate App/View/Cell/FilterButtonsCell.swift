@@ -53,18 +53,12 @@ class FilterButtonsCell: UICollectionViewCell, SelfConfiguringFilterButtonCell {
     
     let filtButton = UIButton(type: .custom)
     var filterButtonModel: FilterButton? = nil
-    
-    let distButton = UIButton(type: .custom) // --> cell
-    let luxButton = UIButton(type: .custom)
-    let schoolButton = UIButton(type: .custom)
-    let securityButton = UIButton(type: .custom)
-    var buttons = [UIButton]()
+    weak var delegate: FilterButtonsCellDelegate!
     
     
     
     override init(frame: CGRect) {
         super .init(frame: frame)
-        buttons = [distButton, luxButton, schoolButton, securityButton]
         
         filtButton.backgroundColor = .clear
         filtButton.layer.cornerRadius = 5
@@ -132,16 +126,21 @@ class FilterButtonsCell: UICollectionViewCell, SelfConfiguringFilterButtonCell {
         
         filtButton.layer.borderColor = hexStringToUIColor(hex: filterButton.color).cgColor
         filtButton.setTitleColor(hexStringToUIColor(hex: filterButton.color), for: .normal)
+        filtButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
     }
     
-    func configure(with apartment: Apartment) {
+    @objc func buttonPressed() {
         
+        print("Button pressed")
         
+        guard let tag = filtButton.titleLabel?.text else {
+            return
+        }
         
-        luxButton.setTitle("Luxury", for: .normal)
-        schoolButton.setTitle("Schools", for: .normal)
-        securityButton.setTitle("Security", for: .normal)
-    }
+        self.delegate?.buttonPressed(tag: tag)
+      }
+    
+
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

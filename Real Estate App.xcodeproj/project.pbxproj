@@ -28,6 +28,7 @@
 		BE979141250182D200FF9D66 /* SavedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE979140250182D200FF9D66 /* SavedViewController.swift */; };
 		BE979143250182EB00FF9D66 /* AlertsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE979142250182EB00FF9D66 /* AlertsViewController.swift */; };
 		BE979145250182FB00FF9D66 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE979144250182FB00FF9D66 /* ProfileViewController.swift */; };
+		BEB230AF2520EEC6005CE963 /* FilterButtonsCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB230AE2520EEC6005CE963 /* FilterButtonsCellDelegate.swift */; };
 		BEEE1720250418FD00ADF35F /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BEEE171F250418FD00ADF35F /* Montserrat-Bold.ttf */; };
 		BEEE17242504D34E00ADF35F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEE17232504D34E00ADF35F /* SearchViewController.swift */; };
 		BEF578CE2502D10C008E8D5C /* Bundle-Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEF578CD2502D10C008E8D5C /* Bundle-Decodable.swift */; };
@@ -63,6 +64,7 @@
 		BE979140250182D200FF9D66 /* SavedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedViewController.swift; sourceTree = "<group>"; };
 		BE979142250182EB00FF9D66 /* AlertsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsViewController.swift; sourceTree = "<group>"; };
 		BE979144250182FB00FF9D66 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		BEB230AE2520EEC6005CE963 /* FilterButtonsCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButtonsCellDelegate.swift; sourceTree = "<group>"; };
 		BEEE171F250418FD00ADF35F /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		BEEE17232504D34E00ADF35F /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		BEF578CD2502D10C008E8D5C /* Bundle-Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle-Decodable.swift"; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				BEF578D42502DC53008E8D5C /* SelfConfiguringCell.swift */,
+				BEB230AE2520EEC6005CE963 /* FilterButtonsCellDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 				BE7408812502CDA700BFC2B5 /* Apartment.swift in Sources */,
 				BE97913D2501821600FF9D66 /* MainTabBarController.swift in Sources */,
 				BE8D44C0250E413E0063401C /* FilterButtonsCell.swift in Sources */,
+				BEB230AF2520EEC6005CE963 /* FilterButtonsCellDelegate.swift in Sources */,
 				BE979145250182FB00FF9D66 /* ProfileViewController.swift in Sources */,
 				BE97912925017DC700FF9D66 /* SceneDelegate.swift in Sources */,
 			);

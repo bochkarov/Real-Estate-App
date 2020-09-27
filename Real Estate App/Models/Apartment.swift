@@ -14,4 +14,5 @@ struct Apartment: Decodable, Hashable {
     let size: String
     let adress: String
     let image: String
+    let tag: String
 }

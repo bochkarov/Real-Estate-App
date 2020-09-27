@@ -10,21 +10,24 @@
                 "price": "$1,291 - 5,299",
                 "size": "1-4 Beds, 1-2 Baths",
                 "adress": "252 1st Avenue",
-                "image": "apparts1"
+                "image": "apparts1",
+                "tag": ""
             },
             {
                 "id": 2,
                 "price": "$4,999",
                 "size": "5 Beds, 2 Baths",
                 "adress": "209 & 10th St #8",
-                "image": "apparts2"
+                "image": "apparts2",
+                "tag": ""
             },
             {
                 "id": 3,
                 "price": "$2,952",
                 "size": "3 Beds, 1 Bath",
                 "adress": "252 1st Avenue",
-                "image": "apparts3"
+                "image": "apparts3",
+                "tag": ""
             }
         ]
     },
@@ -39,21 +42,24 @@
                 "price": "$1,999/sq.ft9",
                 "size": "1-4 Beds, 1-2 Baths",
                 "adress": "252 1st Avenue",
-                "image": "apparts1"
+                "image": "apparts1",
+                "tag": ""
             },
             {
                 "id": 5,
                 "price": "$356/sq.ft",
                 "size": "4 Beds, 2 Baths",
                 "adress": "5th Avenue",
-                "image": "apparts4"
+                "image": "apparts4",
+                "tag": ""
             },
             {
                 "id": 6,
                 "price": "$1,234/sq.ft",
                 "size": "2 Beds, 1 Baths",
                 "adress": "234th Avenue",
-                "image": "apparts5"
+                "image": "apparts5",
+                "tag": ""
             }
         ]
     },
@@ -68,7 +74,8 @@
                 "price": "$1,291 - 5,299",
                 "size": "1-4 Beds, 1-2 Baths",
                 "adress": "252 1st Avenue",
-                "image": "apparts3"
+                "image": "apparts3",
+                "tag": ""
                 
             },
             {
@@ -76,14 +83,16 @@
                 "price": "$4,999",
                 "size": "5 Beds, 2 Baths",
                 "adress": "209 & 10th St #8",
-                "image": "apparts4"
+                "image": "apparts4",
+                "tag": ""
             },
             {
                 "id": 9,
                 "price": "$2,952",
                 "size": "3 Beds, 1 Bath",
                 "adress": "252 1st Avenue",
-                "image": "apparts5"
+                "image": "apparts5",
+                "tag": ""
             }
         ]
     }
