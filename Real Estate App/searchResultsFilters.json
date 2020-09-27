@@ -7,22 +7,22 @@
             {
                 "id": 1,
                 "tagName": "Within 2mi",
-                "color": "green",
+                "color": "#CE0755",
             },
             {
                 "id": 2,
                 "tagName": "Luxury",
-                "color": "blue",
+                "color": "#CE0755",
             },
             {
                 "id": 3,
                 "tagName": "Schools",
-                "color": "blue",
+                "color": "#CE0755",
             },
             {
                 "id": 4,
                 "tagName": "Security",
-                "color": "blue",
+                "color": "Blue",
             },
         ]
     }

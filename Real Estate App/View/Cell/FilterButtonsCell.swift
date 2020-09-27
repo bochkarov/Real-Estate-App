@@ -8,6 +8,13 @@
 
 import UIKit
 
+protocol SelfConfiguringFilterButtonCell {
+
+    
+    static var reuseIdentifier: String { get }
+    func configure(with filterButton: FilterButton)
+}
+
 
 //class FilterButtonCell: UICollectionViewCell {
 //    
@@ -39,10 +46,12 @@ import UIKit
 //    
 //}
 
-class FilterButtonsCell: UICollectionViewCell, SelfConfiguringCell {
+class FilterButtonsCell: UICollectionViewCell, SelfConfiguringFilterButtonCell {
+ 
+    
     static var reuseIdentifier: String = "FilterButtonCell"
     
-    let filterButton = UIButton(type: .custom)
+    let filtButton = UIButton(type: .custom)
     var filterButtonModel: FilterButton? = nil
     
     let distButton = UIButton(type: .custom) // --> cell
@@ -57,14 +66,15 @@ class FilterButtonsCell: UICollectionViewCell, SelfConfiguringCell {
         super .init(frame: frame)
         buttons = [distButton, luxButton, schoolButton, securityButton]
         
-        filterButton.backgroundColor = .clear
-        filterButton.layer.cornerRadius = 5
-        filterButton.layer.borderWidth = 1
-        filterButton.contentEdgeInsets = UIEdgeInsets(top: 7, left: 10, bottom: 7, right: 10)
+        filtButton.backgroundColor = .clear
+        filtButton.layer.cornerRadius = 5
+        filtButton.layer.borderWidth = 1
+        filtButton.contentEdgeInsets = UIEdgeInsets(top: 7, left: 10, bottom: 7, right: 10)
 
         if let font = UIFont(name: "Montserrat-SemiBold", size: 12) {
-            filterButton.titleLabel?.font = font
+            filtButton.titleLabel?.font = font
         }
+        filtButton.setTitle(filterButtonModel?.tagName, for: .normal)
         
 //        for button in buttons {
 //            button.backgroundColor = .clear
@@ -76,12 +86,12 @@ class FilterButtonsCell: UICollectionViewCell, SelfConfiguringCell {
 //                button.titleLabel?.font = font
 //            }
 //        }
-        filterButton.layer.borderColor = #colorLiteral(red: 0.4588235294, green: 0.4588235294, blue: 0.7921568627, alpha: 1)
+//        filtButton.layer.borderColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
 //        luxButton.layer.borderColor = #colorLiteral(red: 0.1411764706, green: 0.7333333333, blue: 0.4196078431, alpha: 1)
 //        schoolButton.layer.borderColor = #colorLiteral(red: 0.2901960784, green: 0.5882352941, blue: 1, alpha: 1)
 //        securityButton.layer.borderColor = #colorLiteral(red: 0.3725490196, green: 0.4431372549, blue: 0.7607843137, alpha: 1)
         
-        filterButton.setTitleColor(#colorLiteral(red: 0.4588235294, green: 0.4588235294, blue: 0.7921568627, alpha: 1), for: .normal)
+        
 //        luxButton.setTitleColor(#colorLiteral(red: 0.1411764706, green: 0.7333333333, blue: 0.4196078431, alpha: 1), for: .normal)
 //        schoolButton.setTitleColor(#colorLiteral(red: 0.2901960784, green: 0.5882352941, blue: 1, alpha: 1), for: .normal)
 //        securityButton.setTitleColor(#colorLiteral(red: 0.3725490196, green: 0.4431372549, blue: 0.7607843137, alpha: 1), for: .normal)
@@ -90,17 +100,20 @@ class FilterButtonsCell: UICollectionViewCell, SelfConfiguringCell {
 //        stackView.translatesAutoresizingMaskIntoConstraints = false
 //        stackView.axis = .horizontal
 //        contentView.addSubview(stackView)
+        contentView.addSubview(filtButton)
         
-        filterButton.translatesAutoresizingMaskIntoConstraints = false
+        filtButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            filterButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            filterButton.topAnchor.constraint(equalTo: contentView.topAnchor),
-            filterButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            filterButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+            filtButton.centerYAnchor.constraint(equalTo: centerYAnchor),
+            filtButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+//            filtButton.leadingAnchor.constraint(equalTo: leadingAnchor),
+//            filtButton.topAnchor.constraint(equalTo: topAnchor),
+//            filtButton.bottomAnchor.constraint(equalTo: bottomAnchor),
+//            filtButton.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
         
-        contentView.addSubview(filterButton)
+        
         
         
 //        NSLayoutConstraint.activate([
@@ -111,9 +124,20 @@ class FilterButtonsCell: UICollectionViewCell, SelfConfiguringCell {
 //        stackView.spacing = 20
     }
     
+    
+    func configure(with filterButton: FilterButton) {
+        
+        
+        filtButton.setTitle(filterButton.tagName, for: .normal)
+        
+        filtButton.layer.borderColor = hexStringToUIColor(hex: filterButton.color).cgColor
+        filtButton.setTitleColor(hexStringToUIColor(hex: filterButton.color), for: .normal)
+    }
+    
     func configure(with apartment: Apartment) {
         
-        distButton.setTitle("Within 2mi", for: .normal)
+        
+        
         luxButton.setTitle("Luxury", for: .normal)
         schoolButton.setTitle("Schools", for: .normal)
         securityButton.setTitle("Security", for: .normal)
@@ -123,7 +147,31 @@ class FilterButtonsCell: UICollectionViewCell, SelfConfiguringCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func hexStringToUIColor (hex:String) -> UIColor {
+        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+
+        if (cString.hasPrefix("#")) {
+            cString.remove(at: cString.startIndex)
+        }
+
+        if ((cString.count) != 6) {
+            return UIColor.gray
+        }
+
+        var rgbValue:UInt64 = 0
+        Scanner(string: cString).scanHexInt64(&rgbValue)
+
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
+    
     
     
     
 }
+
+

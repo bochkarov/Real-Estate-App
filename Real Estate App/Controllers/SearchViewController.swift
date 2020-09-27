@@ -27,6 +27,7 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        print(sections)
         sections.map { (filters) in
             filters.filters.map { (button) in
                 print(button.tagName)
@@ -71,6 +72,15 @@ class SearchViewController: UIViewController {
         return cell
     }
     
+    func configureFilter<T: SelfConfiguringFilterButtonCell>(_ cellType: T.Type, with filterButton: FilterButton, for indexPath: IndexPath) -> T {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellType.reuseIdentifier, for: indexPath) as? T else {
+            fatalError("Unable to deque \(cellType)")
+        }
+        cell.configure(with: filterButton)
+        return cell
+    }
+    
+    
     
     
     func createDataSource() {
@@ -85,10 +95,13 @@ class SearchViewController: UIViewController {
 //                      }
             }
             if let filterButton = item as? FilterButton {
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterButtonsCell.reuseIdentifier, for: indexPath)
+                
+                return self.configureFilter(FilterButtonsCell.self, with: filterButton, for: indexPath)
+//                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterButtonsCell.reuseIdentifier, for: indexPath)
             
-            
-                return cell
+//                return cell
+//
+                
             }
             
             fatalError()
@@ -125,6 +138,7 @@ class SearchViewController: UIViewController {
         
         for section in sections {
             snapshot.appendItems(section.items, toSection: section)
+            snapshot.appendItems(section.filters, toSection: section)
             
 //            var filteredItems: [String] = []
 //            if pickedTegs.containt(section.items[3].tag) {
@@ -178,17 +192,18 @@ class SearchViewController: UIViewController {
     }
     
     func createFilterButtonsSections(using section: Section) -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.93), heightDimension: .fractionalHeight(0.1))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.24), heightDimension: .fractionalHeight(0.1))
         let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
-        layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0)
-        
-
-        let layoutGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(300))
+//        layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5)
+    
+        let layoutGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(100))
         let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: layoutGroupSize, subitems: [layoutItem])
               let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
+        layoutSection.orthogonalScrollingBehavior = .continuous
+
     
     
-        layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 0, bottom: 16, trailing: 0)
+        layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 16, trailing: 0)
         return layoutSection
     }
     
