@@ -8,10 +8,10 @@
 
 import UIKit
 
-enum TagType {
-    case luxury
-    case schools
-}
+//enum TagType {
+//    case luxury
+//    case schools
+//}
 
 class SearchViewController: UIViewController {
     let searchBar = UISearchBar()
@@ -25,8 +25,8 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        
         filterButtonCell.delegate = self
-    
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCompositionalLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .systemBackground
@@ -199,6 +199,7 @@ class SearchViewController: UIViewController {
     }
     
     func createFilterButtonsSections(using section: Section) -> NSCollectionLayoutSection {
+        
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.24), heightDimension: .fractionalHeight(0.1))
         let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
 //        layoutItem.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5)
