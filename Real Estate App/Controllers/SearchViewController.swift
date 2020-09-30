@@ -90,10 +90,12 @@ class SearchViewController: UIViewController {
             }
             if let filterButton = item as? FilterButton {
                 
-                return self.configureFilter(FilterButtonsCell.self, with: filterButton, for: indexPath)
+                let cell = self.configureFilter(FilterButtonsCell.self, with: filterButton, for: indexPath)
+                
+                cell.delegate = self
 //                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterButtonsCell.reuseIdentifier, for: indexPath)
             
-//                return cell
+                return cell
 //
                 
             }
