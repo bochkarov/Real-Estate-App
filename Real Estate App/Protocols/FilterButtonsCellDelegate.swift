@@ -8,5 +8,5 @@
 
 import Foundation
 protocol FilterButtonsCellDelegate: class {
-    func buttonPressed(tag: String)
+    func buttonPressed(filter: String)
 }

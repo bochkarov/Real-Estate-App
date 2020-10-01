@@ -59,7 +59,6 @@ class ExploreViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
        
         navigationItem.searchController = searchController
-//        navigationController?.navigationBar.shadowImage = UIImage()
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationController?.navigationBar.backgroundColor = .white
         searchController.hidesNavigationBarDuringPresentation = true
@@ -189,7 +188,6 @@ class ExploreViewController: UIViewController {
     
     func createSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
         let layoutSectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.93), heightDimension: .estimated(80))
-        
         let layoutSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: layoutSectionHeaderSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         return layoutSectionHeader
     }
@@ -203,9 +201,8 @@ extension ExploreViewController {
 
 // MARK: - UISearchBarDelegate
 extension ExploreViewController: UISearchBarDelegate {
-
+    
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        
         let backButton = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
         backButton.setImage(UIImage(named: "back"), for: .normal)
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
@@ -213,14 +210,11 @@ extension ExploreViewController: UISearchBarDelegate {
         leftView.contentMode = .scaleAspectFill
         leftView.addSubview(backButton)
         searchController.searchBar.searchTextField.leftView = leftView
-   
     }
-    
     @objc func backButtonTapped() {
         searchController.isActive = false
         searchController.searchBar.searchTextField.leftView = .none
     }
-    
 }
 
 

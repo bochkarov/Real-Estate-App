@@ -14,38 +14,6 @@ protocol SelfConfiguringFilterButtonCell {
     static var reuseIdentifier: String { get }
     func configure(with filterButton: FilterButton)
 }
-
-
-//class FilterButtonCell: UICollectionViewCell {
-//    
-//    let luxButton = UIButton(type: .custom)
-//    
-//    weak var delegate: SearchVCDelegate?
-//    
-//    var something: Something? = nil
-//    
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//        
-//        // custize
-//    }
-//    
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//    
-//    func configure(with something: Something) {
-//        self.something = something
-//        luxButton.setTitle(something.tagName, for: .normal)
-//        luxButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
-//    }
-//    
-//    @objc func buttonPressed() {
-//        delegate.buttonPressed(tag: something.tagName)
-//    }
-//    
-//}
-
 class FilterButtonsCell: UICollectionViewCell, SelfConfiguringFilterButtonCell {
  
     
@@ -70,30 +38,6 @@ class FilterButtonsCell: UICollectionViewCell, SelfConfiguringFilterButtonCell {
         }
         filtButton.setTitle(filterButtonModel?.tagName, for: .normal)
         
-//        for button in buttons {
-//            button.backgroundColor = .clear
-//            button.layer.cornerRadius = 5
-//            button.layer.borderWidth = 1
-//            button.contentEdgeInsets = UIEdgeInsets(top: 7, left: 10, bottom: 7, right: 10)
-//
-//            if let font = UIFont(name: "Montserrat-SemiBold", size: 12) {
-//                button.titleLabel?.font = font
-//            }
-//        }
-//        filtButton.layer.borderColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
-//        luxButton.layer.borderColor = #colorLiteral(red: 0.1411764706, green: 0.7333333333, blue: 0.4196078431, alpha: 1)
-//        schoolButton.layer.borderColor = #colorLiteral(red: 0.2901960784, green: 0.5882352941, blue: 1, alpha: 1)
-//        securityButton.layer.borderColor = #colorLiteral(red: 0.3725490196, green: 0.4431372549, blue: 0.7607843137, alpha: 1)
-        
-        
-//        luxButton.setTitleColor(#colorLiteral(red: 0.1411764706, green: 0.7333333333, blue: 0.4196078431, alpha: 1), for: .normal)
-//        schoolButton.setTitleColor(#colorLiteral(red: 0.2901960784, green: 0.5882352941, blue: 1, alpha: 1), for: .normal)
-//        securityButton.setTitleColor(#colorLiteral(red: 0.3725490196, green: 0.4431372549, blue: 0.7607843137, alpha: 1), for: .normal)
-        
-//        let stackView = UIStackView(arrangedSubviews: [distButton, luxButton, schoolButton, securityButton])
-//        stackView.translatesAutoresizingMaskIntoConstraints = false
-//        stackView.axis = .horizontal
-//        contentView.addSubview(stackView)
         contentView.addSubview(filtButton)
         
         filtButton.translatesAutoresizingMaskIntoConstraints = false
@@ -101,21 +45,7 @@ class FilterButtonsCell: UICollectionViewCell, SelfConfiguringFilterButtonCell {
         NSLayoutConstraint.activate([
             filtButton.centerYAnchor.constraint(equalTo: centerYAnchor),
             filtButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-//            filtButton.leadingAnchor.constraint(equalTo: leadingAnchor),
-//            filtButton.topAnchor.constraint(equalTo: topAnchor),
-//            filtButton.bottomAnchor.constraint(equalTo: bottomAnchor),
-//            filtButton.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
-        
-        
-        
-        
-//        NSLayoutConstraint.activate([
-//            stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-//            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-//            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-//        ])
-//        stackView.spacing = 20
     }
     
     
@@ -133,11 +63,13 @@ class FilterButtonsCell: UICollectionViewCell, SelfConfiguringFilterButtonCell {
         
         print("Button pressed")
         
+        
+        
         guard let tag = filtButton.titleLabel?.text else {
             return
         }
         
-        self.delegate?.buttonPressed(tag: tag)
+        self.delegate?.buttonPressed(filter: tag)
       }
     
 
