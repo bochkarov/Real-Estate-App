@@ -9,7 +9,6 @@
 import UIKit
 
 class JustInCell: UICollectionViewCell, SelfConfiguringCell {
-   
     
     static var reuseIdentifier: String = "JustInCell"
     
@@ -25,22 +24,21 @@ class JustInCell: UICollectionViewCell, SelfConfiguringCell {
         imageView.layer.cornerRadius = 10
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
-
+        
         pin.image = UIImage(named: "pin")
         pin.clipsToBounds = true
         pin.contentMode = .left
-
         
         if let font = UIFont(name: "Montserrat-SemiBold", size: 16) {
             price.font = font
         }
         price.textColor = #colorLiteral(red: 0.2117647059, green: 0.2117647059, blue: 0.2117647059, alpha: 1)
-
+        
         if let font = UIFont(name: "Montserrat-Medium", size: 12) {
             size.font = font
         }
         size.textColor = .secondaryLabel
-
+        
         if let font = UIFont(name: "Montserrat-Medium", size: 10) {
             adress.font = font
         }
@@ -49,7 +47,7 @@ class JustInCell: UICollectionViewCell, SelfConfiguringCell {
         let innerStackView = UIStackView(arrangedSubviews: [pin, adress])
         innerStackView.axis = .horizontal
         innerStackView.distribution = .fillProportionally
-  
+        
         let stackView = UIStackView(arrangedSubviews: [imageView, price, size, innerStackView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -71,8 +69,6 @@ class JustInCell: UICollectionViewCell, SelfConfiguringCell {
         size.text = apartment.size
         adress.text = apartment.adress
     }
-    
-
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

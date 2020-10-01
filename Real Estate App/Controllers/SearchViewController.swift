@@ -14,29 +14,30 @@ class SearchViewController: UIViewController {
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, AnyHashable>?
     var currentFilter: String? = nil
-    let filterButtonCell = FilterButtonsCell()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        filterButtonCell.delegate = self
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCompositionalLayout())
-        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        collectionView.backgroundColor = .systemBackground
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(collectionView)
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-        collectionView.register(FilterButtonsCell.self, forCellWithReuseIdentifier: FilterButtonsCell.reuseIdentifier)
-        collectionView.register(SearchVCSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchVCSectionHeader.reuseIdentifier)
-        collectionView.register(SearchResultsCell.self, forCellWithReuseIdentifier: SearchResultsCell.reuseIdentifier)
+        setupCollectionView()
         createDataSource()
         reloadData()
-        
+    }
+    
+    func reloadData() {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, AnyHashable>()
+        snapshot.appendSections(sections)
+        for section in sections {
+            snapshot.appendItems(section.filters, toSection: section)
+            if currentFilter != nil {
+                let items = section.items
+                let filterdItems = items.filter { $0.tag.contains(currentFilter!) }
+                print(filterdItems)
+                snapshot.appendItems(filterdItems, toSection: section)
+            } else {
+                snapshot.appendItems(section.items, toSection: section)
+            }
+        }
+        dataSource?.apply(snapshot)
     }
     
     func configure<T: SelfConfiguringCell>(_ cellType: T.Type, with apartment: Apartment, for indexPath: IndexPath) -> T {
@@ -55,6 +56,25 @@ class SearchViewController: UIViewController {
         return cell
     }
     
+    // MARK: - Setup View
+    fileprivate func setupCollectionView() {
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCompositionalLayout())
+        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        collectionView.backgroundColor = .systemBackground
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(collectionView)
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        collectionView.register(FilterButtonsCell.self, forCellWithReuseIdentifier: FilterButtonsCell.reuseIdentifier)
+        collectionView.register(SearchVCSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchVCSectionHeader.reuseIdentifier)
+        collectionView.register(SearchResultsCell.self, forCellWithReuseIdentifier: SearchResultsCell.reuseIdentifier)
+    }
+    
+    // MARK: - DataSource
     func createDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, AnyHashable> (collectionView: collectionView) { collectionView, indexPath, item in
             
@@ -69,7 +89,6 @@ class SearchViewController: UIViewController {
             }
             fatalError()
         }
-        
         dataSource?.supplementaryViewProvider = { [weak self]
             collectionView, kind, indexPath in
             guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SearchVCSectionHeader.reuseIdentifier, for: indexPath) as? SearchVCSectionHeader else {
@@ -83,23 +102,8 @@ class SearchViewController: UIViewController {
             return sectionHeader
         }
     }
-    func reloadData() {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, AnyHashable>()
-        snapshot.appendSections(sections)
-        for section in sections {
-            snapshot.appendItems(section.filters, toSection: section)
-            if currentFilter != nil {
-                let items = section.items
-                let filterdItems = items.filter { $0.tag.contains(currentFilter!) }
-                print(filterdItems)
-                snapshot.appendItems(filterdItems, toSection: section)
-            } else {
-                snapshot.appendItems(section.items, toSection: section)
-            }
-        }
-        dataSource?.apply(snapshot)
-    }
     
+    // MARK: - Layout
     func createCompositionalLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { sectionIndex, layoutEnvironment in
             let section = self.sections[sectionIndex]
@@ -115,7 +119,6 @@ class SearchViewController: UIViewController {
         layout.configuration = config
         return layout
     }
-    
     func createSearchResultSection(using section: Section) -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.93))
         let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -127,13 +130,11 @@ class SearchViewController: UIViewController {
         layoutSection.boundarySupplementaryItems = [layoutSectionHeader]
         return layoutSection
     }
-    
     func createSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
         let layoutSectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.93), heightDimension: .estimated(80))
         let layoutSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: layoutSectionHeaderSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         return layoutSectionHeader
     }
-    
     func createFilterButtonsSections(using section: Section) -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.24), heightDimension: .fractionalHeight(0.1))
         let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -146,6 +147,7 @@ class SearchViewController: UIViewController {
     }
 }
 
+// MARK: - FilterButtonsCellDelegate
 extension SearchViewController: FilterButtonsCellDelegate {
     func buttonPressed(filter: String) {
         if currentFilter == filter {

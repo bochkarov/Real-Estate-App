@@ -18,46 +18,38 @@ class ExploreViewController: UIViewController {
     let locationButton = UIButton()
     let searchController = UISearchController(searchResultsController: SearchViewController())
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-   
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCompositionalLayout())
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
-        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        collectionView.backgroundColor = .systemBackground
-        view.addSubview(collectionView)
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-        collectionView.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.reuseIdentifier)
-        collectionView.register(JustInCell.self, forCellWithReuseIdentifier: JustInCell.reuseIdentifier)
-        collectionView.register(DesignerHomesCell.self, forCellWithReuseIdentifier: DesignerHomesCell.reuseIdentifier)
+        setupCollectionView()
         setupNavigationBar()
         createDataSource()
         reloadData()
-   
     }
- 
-
+    
+    func reloadData() {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Apartment>()
+        snapshot.appendSections(sections)
+        
+        for section in sections {
+            snapshot.appendItems(section.items, toSection: section)
+        }
+        dataSource?.apply(snapshot)
+    }
+    
     func configure<T: SelfConfiguringCell>(_ cellType: T.Type, with apartment: Apartment, for indexPath: IndexPath) -> T {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellType.reuseIdentifier, for: indexPath) as? T else {
             fatalError("Unable to dequeue \(cellType)")
         }
-        
         cell.configure(with: apartment)
         return cell
     }
     
+    // MARK: - Setup View
     private func setupNavigationBar() {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
-       
+        
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationController?.navigationBar.backgroundColor = .white
@@ -110,7 +102,25 @@ class ExploreViewController: UIViewController {
         navigationItem.leftBarButtonItem = leftBarButtonItem
     }
     
+    fileprivate func setupCollectionView() {
+        collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCompositionalLayout())
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        collectionView.backgroundColor = .systemBackground
+        view.addSubview(collectionView)
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        collectionView.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.reuseIdentifier)
+        collectionView.register(JustInCell.self, forCellWithReuseIdentifier: JustInCell.reuseIdentifier)
+        collectionView.register(DesignerHomesCell.self, forCellWithReuseIdentifier: DesignerHomesCell.reuseIdentifier)
+    }
     
+    // MARK: - DataSource
     func createDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Apartment>(collectionView: collectionView) { collectionView, indexPath, apartment in
             switch self.sections[indexPath.section].type {
@@ -133,16 +143,7 @@ class ExploreViewController: UIViewController {
         }
     }
     
-    func reloadData() {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Apartment>()
-        snapshot.appendSections(sections)
-        
-        for section in sections {
-            snapshot.appendItems(section.items, toSection: section)
-        }
-        dataSource?.apply(snapshot)
-    }
-    
+    // MARK: - Layout
     func createCompositionalLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { sectionIndex, layoutEnvironment in
             let section = self.sections[sectionIndex]
@@ -159,7 +160,6 @@ class ExploreViewController: UIViewController {
         layout.configuration = config
         return layout
     }
-    
     func createJustInSection(using section: Section) -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -172,7 +172,6 @@ class ExploreViewController: UIViewController {
         layoutSection.boundarySupplementaryItems = [layoutSectionHeader]
         return layoutSection
     }
-    
     func createDesignerHomesSection(using section: Section) -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -185,13 +184,13 @@ class ExploreViewController: UIViewController {
         layoutSection.boundarySupplementaryItems = [layoutSectionHeader]
         return layoutSection
     }
-    
     func createSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
         let layoutSectionHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.93), heightDimension: .estimated(80))
         let layoutSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: layoutSectionHeaderSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         return layoutSectionHeader
     }
 }
+
 // MARK: - Actions
 extension ExploreViewController {
     @objc func settingsBarButtonItemTapped() {
@@ -201,7 +200,6 @@ extension ExploreViewController {
 
 // MARK: - UISearchBarDelegate
 extension ExploreViewController: UISearchBarDelegate {
-    
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         let backButton = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
         backButton.setImage(UIImage(named: "back"), for: .normal)

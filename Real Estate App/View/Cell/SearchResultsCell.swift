@@ -46,7 +46,6 @@ class SearchResultsCell: UICollectionViewCell, SelfConfiguringCell {
             adress.font = font
         }
         adress.textColor = .secondaryLabel
-        
         let adressStackView = UIStackView(arrangedSubviews: [pin, adress])
         adressStackView.axis = .horizontal
         adressStackView.distribution = .fillProportionally
@@ -56,26 +55,22 @@ class SearchResultsCell: UICollectionViewCell, SelfConfiguringCell {
         adressSizeStackView.distribution = .fillProportionally
         adressSizeStackView.spacing = 10
         
-        
-        
         let adressSizePriceStackView = UIStackView(arrangedSubviews: [adressSizeStackView, price])
         adressSizePriceStackView.axis = .horizontal
         adressSizePriceStackView.distribution = .equalSpacing
         
         let stackView = UIStackView(arrangedSubviews: [imageView,adressSizePriceStackView])
-          stackView.translatesAutoresizingMaskIntoConstraints = false
-          stackView.axis = .vertical
-          contentView.addSubview(stackView)
-          NSLayoutConstraint.activate([
-            
-              stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-              stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-              stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-              stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-          ])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        contentView.addSubview(stackView)
+        NSLayoutConstraint.activate([
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
         stackView.setCustomSpacing(15, after: imageView)
     }
-    
     func configure(with apartment: Apartment) {
         imageView.image = UIImage(named: apartment.image)
         price.text = apartment.price
