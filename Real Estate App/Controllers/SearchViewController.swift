@@ -136,14 +136,20 @@ class SearchViewController: UIViewController {
         return layoutSectionHeader
     }
     func createFilterButtonsSections(using section: Section) -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.24), heightDimension: .fractionalHeight(0.1))
-        let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
-        let layoutGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(100))
-        let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: layoutGroupSize, subitems: [layoutItem])
-        let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
-        layoutSection.orthogonalScrollingBehavior = .continuous
-        layoutSection.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 16, trailing: 0)
-        return layoutSection
+        let layoutSize = NSCollectionLayoutSize.init(
+            widthDimension: .estimated(100),
+            heightDimension: .absolute(32)
+        )
+        let section = NSCollectionLayoutSection(group:
+            .horizontal(
+                layoutSize: layoutSize,
+                subitems: [.init(layoutSize: layoutSize)]
+            )
+        )
+        section.interGroupSpacing = 15
+        section.orthogonalScrollingBehavior = .continuous
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
+        return section
     }
 }
 

@@ -25,16 +25,18 @@ class FilterButtonsCell: UICollectionViewCell, SelfConfiguringFilterButtonCell {
         filtButton.layer.cornerRadius = 5
         filtButton.layer.borderWidth = 1
         filtButton.contentEdgeInsets = UIEdgeInsets(top: 7, left: 10, bottom: 7, right: 10)
+        filtButton.frame.size = contentView.bounds.size
+        filtButton.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         if let font = UIFont(name: "Montserrat-SemiBold", size: 12) {
             filtButton.titleLabel?.font = font
         }
         filtButton.setTitle(filterButtonModel?.tagName, for: .normal)
         contentView.addSubview(filtButton)
-        filtButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            filtButton.centerYAnchor.constraint(equalTo: centerYAnchor),
-            filtButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-        ])
+    }
+    
+    override func sizeThatFits(_ size: CGSize) -> CGSize {
+        .init(width: filtButton.sizeThatFits(size).width + 4, height: 32)
+
     }
     func configure(with filterButton: FilterButton) {
         filtButton.setTitle(filterButton.tagName, for: .normal)
