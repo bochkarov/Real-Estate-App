@@ -40,12 +40,9 @@ class MainTabBarController: UITabBarController {
     
     private func generateNavigationController(rootViewController: UIViewController, title: String,
                                               image: UIImage) -> UIViewController {
-     
         let navigationVC = UINavigationController(rootViewController: rootViewController)
         navigationVC.tabBarItem.title = title
         navigationVC.tabBarItem.image = image
-
-        
         return navigationVC
     }
 }

@@ -148,7 +148,7 @@ class SearchViewController: UIViewController {
         )
         section.interGroupSpacing = 15
         section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 25, trailing: 10)
         return section
     }
 }
