@@ -37,6 +37,11 @@ class SearchVCSectionHeader: UICollectionReusableView {
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20)
         ])
+        
+        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+    }
+    @objc func buttonPressed() {
+        print("Hello")
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

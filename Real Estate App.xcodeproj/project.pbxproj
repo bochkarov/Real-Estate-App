@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE2EE9C0252FA732009ECE62 /* UIViewController + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE2EE9BF252FA732009ECE62 /* UIViewController + Extension.swift */; };
 		BE3A028E2503C6D4001CF633 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3A028D2503C6D4001CF633 /* SectionHeader.swift */; };
 		BE3DCDBE2503AF1D00BAA5DE /* DesignerHomesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3DCDBD2503AF1D00BAA5DE /* DesignerHomesCell.swift */; };
 		BE74087F2502CBB900BFC2B5 /* realestate.json in Resources */ = {isa = PBXBuildFile; fileRef = BE74087E2502CBB900BFC2B5 /* realestate.json */; };
@@ -41,6 +42,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BE2EE9BF252FA732009ECE62 /* UIViewController + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension.swift"; sourceTree = "<group>"; };
 		BE3A028D2503C6D4001CF633 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 		BE3DCDBD2503AF1D00BAA5DE /* DesignerHomesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignerHomesCell.swift; sourceTree = "<group>"; };
 		BE74087E2502CBB900BFC2B5 /* realestate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = realestate.json; sourceTree = SOURCE_ROOT; };
@@ -165,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				BEF578CD2502D10C008E8D5C /* Bundle-Decodable.swift */,
+				BE2EE9BF252FA732009ECE62 /* UIViewController + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE7C76DD251E89F1007E054A /* FilterButtonSection.swift in Sources */,
+				BE2EE9C0252FA732009ECE62 /* UIViewController + Extension.swift in Sources */,
 				BE979141250182D200FF9D66 /* SavedViewController.swift in Sources */,
 				BE7C76D9251E870C007E054A /* FilterButton.swift in Sources */,
 				BE97912B25017DC700FF9D66 /* ViewController.swift in Sources */,

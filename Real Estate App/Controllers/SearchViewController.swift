@@ -22,6 +22,8 @@ class SearchViewController: UIViewController {
         createDataSource()
         reloadData()
     }
+
+    
     
     func reloadData() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, AnyHashable>()
@@ -40,6 +42,7 @@ class SearchViewController: UIViewController {
         dataSource?.apply(snapshot)
     }
     
+
     func configure<T: SelfConfiguringCell>(_ cellType: T.Type, with apartment: Apartment, for indexPath: IndexPath) -> T {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellType.reuseIdentifier, for: indexPath) as? T else {
             fatalError("Unable to deque \(cellType)")
@@ -72,7 +75,16 @@ class SearchViewController: UIViewController {
         collectionView.register(FilterButtonsCell.self, forCellWithReuseIdentifier: FilterButtonsCell.reuseIdentifier)
         collectionView.register(SearchVCSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchVCSectionHeader.reuseIdentifier)
         collectionView.register(SearchResultsCell.self, forCellWithReuseIdentifier: SearchResultsCell.reuseIdentifier)
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+               tap.cancelsTouchesInView = false
+        collectionView.addGestureRecognizer(tap)
     }
+    @objc func dismissKeyboard() {
+        print("Hello")
+        let explorerVC = ExploreViewController()
+        explorerVC.dismissKeyboard()
+        searchBar.resignFirstResponder()
+      }
     
     // MARK: - DataSource
     func createDataSource() {
@@ -165,4 +177,5 @@ extension SearchViewController: FilterButtonsCellDelegate {
         }
     }
 }
+
 
