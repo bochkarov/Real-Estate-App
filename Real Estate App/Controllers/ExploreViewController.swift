@@ -119,13 +119,8 @@ class ExploreViewController: UIViewController {
         collectionView.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeader.reuseIdentifier)
         collectionView.register(JustInCell.self, forCellWithReuseIdentifier: JustInCell.reuseIdentifier)
         collectionView.register(DesignerHomesCell.self, forCellWithReuseIdentifier: DesignerHomesCell.reuseIdentifier)
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-               tap.cancelsTouchesInView = false
-        collectionView.addGestureRecognizer(tap)
     }
-    @objc func dismissKeyboard() {
-        searchController.searchBar.endEditing(true)
-      }
+    
     
     // MARK: - DataSource
     func createDataSource() {

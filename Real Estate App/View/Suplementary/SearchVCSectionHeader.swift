@@ -19,6 +19,8 @@ class SearchVCSectionHeader: UICollectionReusableView {
         if let font = UIFont(name: "Montserrat-Bold", size: 20) {
             title.font = font
         }
+        title.text = "Test"
+
         if let font = UIFont(name: "Montserrat-SemiBold", size: 12) {
             button.titleLabel?.font = font
         }
@@ -38,11 +40,8 @@ class SearchVCSectionHeader: UICollectionReusableView {
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20)
         ])
         
-        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
     }
-    @objc func buttonPressed() {
-        print("Hello")
-    }
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

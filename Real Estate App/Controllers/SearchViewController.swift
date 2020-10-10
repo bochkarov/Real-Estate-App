@@ -14,6 +14,7 @@ class SearchViewController: UIViewController {
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, AnyHashable>?
     var currentFilter: String? = nil
+    var itemsCount: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,8 +23,6 @@ class SearchViewController: UIViewController {
         createDataSource()
         reloadData()
     }
-
-    
     
     func reloadData() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, AnyHashable>()
@@ -33,16 +32,19 @@ class SearchViewController: UIViewController {
             if currentFilter != nil {
                 let items = section.items
                 let filterdItems = items.filter { $0.tag.contains(currentFilter!) }
-                print(filterdItems)
                 snapshot.appendItems(filterdItems, toSection: section)
+                itemsCount = filterdItems.count
+                
             } else {
                 snapshot.appendItems(section.items, toSection: section)
+                itemsCount = section.items.count
             }
         }
         dataSource?.apply(snapshot)
+        collectionView.reloadData()
     }
     
-
+    
     func configure<T: SelfConfiguringCell>(_ cellType: T.Type, with apartment: Apartment, for indexPath: IndexPath) -> T {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellType.reuseIdentifier, for: indexPath) as? T else {
             fatalError("Unable to deque \(cellType)")
@@ -76,15 +78,12 @@ class SearchViewController: UIViewController {
         collectionView.register(SearchVCSectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchVCSectionHeader.reuseIdentifier)
         collectionView.register(SearchResultsCell.self, forCellWithReuseIdentifier: SearchResultsCell.reuseIdentifier)
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-               tap.cancelsTouchesInView = false
+        tap.cancelsTouchesInView = false
         collectionView.addGestureRecognizer(tap)
     }
     @objc func dismissKeyboard() {
-        print("Hello")
-        let explorerVC = ExploreViewController()
-        explorerVC.dismissKeyboard()
-        searchBar.resignFirstResponder()
-      }
+        UIApplication.shared.sendAction(#selector(UIApplication.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
     
     // MARK: - DataSource
     func createDataSource() {
@@ -110,10 +109,42 @@ class SearchViewController: UIViewController {
             guard let section = self?.dataSource?.snapshot().sectionIdentifier(containingItem: firstApp) else { return nil }
             if section.title.isEmpty { return nil }
             
-            sectionHeader.title.text = section.title
+            if let counter = self?.itemsCount {
+                sectionHeader.title.text = "\(counter) Results Found"
+            }
+            sectionHeader.button.addTarget(self, action: #selector(self?.sortButtonPressed), for: .touchUpInside)
             return sectionHeader
         }
+        
+        
     }
+    @objc func sortButtonPressed() {
+        let alert = UIAlertController(title: "Sort By", message: nil, preferredStyle: .actionSheet)
+
+        alert.addAction(UIAlertAction(title: "Newest First", style: .default , handler:{ (UIAlertAction)in
+            print("User click Newest First")
+        }))
+
+        alert.addAction(UIAlertAction(title: "Oldest First", style: .default , handler:{ (UIAlertAction)in
+            print("User click Oldest First")
+        }))
+
+        alert.addAction(UIAlertAction(title: "Featured", style: .default , handler:{ (UIAlertAction)in
+            print("User click Featured")
+        }))
+
+        alert.addAction(UIAlertAction(title: "Best Rated", style: .default, handler:{ (UIAlertAction)in
+            print("User click Best Rated")
+        }))
+
+        alert.addAction(UIAlertAction(title: "Only near me", style: .default, handler:{ (UIAlertAction)in
+            print("User click Only near me")
+        }))
+
+        self.present(alert, animated: true, completion: nil)
+        print("Hello")
+    }
+    
     
     // MARK: - Layout
     func createCompositionalLayout() -> UICollectionViewLayout {
@@ -153,10 +184,10 @@ class SearchViewController: UIViewController {
             heightDimension: .absolute(32)
         )
         let section = NSCollectionLayoutSection(group:
-            .horizontal(
-                layoutSize: layoutSize,
-                subitems: [.init(layoutSize: layoutSize)]
-            )
+                                                    .horizontal(
+                                                        layoutSize: layoutSize,
+                                                        subitems: [.init(layoutSize: layoutSize)]
+                                                    )
         )
         section.interGroupSpacing = 15
         section.orthogonalScrollingBehavior = .continuous
@@ -167,6 +198,7 @@ class SearchViewController: UIViewController {
 
 // MARK: - FilterButtonsCellDelegate
 extension SearchViewController: FilterButtonsCellDelegate {
+
     func buttonPressed(filter: String) {
         if currentFilter == filter {
             currentFilter = nil

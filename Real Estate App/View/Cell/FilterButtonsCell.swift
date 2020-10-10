@@ -46,7 +46,6 @@ class FilterButtonsCell: UICollectionViewCell, SelfConfiguringFilterButtonCell {
     }
     
     @objc func buttonPressed() {
-        print("Button pressed")
         guard let tag = filtButton.titleLabel?.text else {
             return
         }
