@@ -9,13 +9,10 @@
 import UIKit
 
 class ExploreViewController: UIViewController {
-    let settingsBarButtonItem = UIBarButtonItem(image: UIImage(named: "gear"), style: .plain, target: nil, action: nil)
+
     let sections = Bundle.main.decode([Section].self, from: "realestate.json")
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Apartment>?
-    let pin = UIImageView()
-    let locationLabel = UILabel()
-    let locationButton = UIButton()
     let searchController = UISearchController(searchResultsController: SearchViewController())
     
     override func viewDidLoad() {
@@ -26,7 +23,6 @@ class ExploreViewController: UIViewController {
         createDataSource()
         reloadData()
     }
-    
     
     func reloadData() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Apartment>()
@@ -48,24 +44,29 @@ class ExploreViewController: UIViewController {
     
     // MARK: - Setup View
     private func setupNavigationBar() {
+        let settingsBarButtonItem = UIBarButtonItem(image: UIImage(named: "gear"), style: .plain, target: nil, action: nil)
+        let pin = UIImageView()
+        let locationLabel = UILabel()
+        let locationButton = UIButton()
+        
+        // Setup NavigationController
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
-        
-        navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         navigationController?.navigationBar.backgroundColor = .white
+        
+        // Setup Search Controller
+        navigationItem.searchController = searchController
         searchController.hidesNavigationBarDuringPresentation = true
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.showsSearchResultsController = true
         searchController.searchBar.showsCancelButton = false
         searchController.searchBar.delegate = self
-        searchController.searchBar.backgroundColor = .white
         searchController.searchBar.searchTextField.borderStyle = .none
         searchController.searchBar.searchTextField.layer.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.9725490196, blue: 0.9725490196, alpha: 1)
         searchController.searchBar.searchTextField.layer.cornerRadius = 10
         searchController.searchBar.placeholder = "Search by Location, Area or Pin Code"
         searchController.searchBar.translatesAutoresizingMaskIntoConstraints = false
-        
         if let font = UIFont(name: "Montserrat-Medium", size: 10) {
             searchController.searchBar.searchTextField.font = font
         }
@@ -76,9 +77,10 @@ class ExploreViewController: UIViewController {
         searchController.searchBar.showsBookmarkButton = true
         searchController.searchBar.setImage (UIImage(named: "search"), for: .bookmark, state: .normal)
         searchController.searchBar.setImage(UIImage(named: "clear"), for: .clear, state: .normal)
+        
+        // Setup NavigationController buttons
         settingsBarButtonItem.tintColor = .black
         navigationItem.rightBarButtonItem = settingsBarButtonItem
-        navigationController?.navigationBar.prefersLargeTitles = false
         pin.image = UIImage(named: "pin20")
         pin.clipsToBounds = true
         pin.contentMode = .center
@@ -120,7 +122,6 @@ class ExploreViewController: UIViewController {
         collectionView.register(JustInCell.self, forCellWithReuseIdentifier: JustInCell.reuseIdentifier)
         collectionView.register(DesignerHomesCell.self, forCellWithReuseIdentifier: DesignerHomesCell.reuseIdentifier)
     }
-    
     
     // MARK: - DataSource
     func createDataSource() {

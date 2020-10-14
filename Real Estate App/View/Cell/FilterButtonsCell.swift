@@ -9,7 +9,6 @@
 import UIKit
 
 protocol SelfConfiguringFilterButtonCell {
-    
     static var reuseIdentifier: String { get }
     func configure(with filterButton: FilterButton)
 }
@@ -44,7 +43,7 @@ class FilterButtonsCell: UICollectionViewCell, SelfConfiguringFilterButtonCell {
         filtButton.setTitleColor(hexStringToUIColor(hex: filterButton.color), for: .normal)
         filtButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
     }
-    
+
     @objc func buttonPressed() {
         guard let tag = filtButton.titleLabel?.text else {
             return

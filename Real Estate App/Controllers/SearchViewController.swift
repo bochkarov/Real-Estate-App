@@ -93,7 +93,6 @@ class SearchViewController: UIViewController {
                 return self.configure(SearchResultsCell.self, with: apartment, for: indexPath)
             }
             if let filterButton = item as? FilterButton {
-                
                 let cell = self.configureFilter(FilterButtonsCell.self, with: filterButton, for: indexPath)
                 cell.delegate = self
                 return cell

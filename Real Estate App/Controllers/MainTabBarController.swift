@@ -15,8 +15,7 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
         
         UITabBar.appearance().tintColor = #colorLiteral(red: 0.862745098, green: 0.1843137255, blue: 0.1803921569, alpha: 1)
-        UITabBar.appearance().frame.size.height = 150
-        
+    
     
         UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Montserrat-Medium", size: 10) ?? UIFont.systemFontSize], for: .normal)
         let exploreVC = ExploreViewController()
