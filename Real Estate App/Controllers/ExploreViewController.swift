@@ -9,6 +9,16 @@
 import UIKit
 
 class ExploreViewController: UIViewController {
+    
+    enum Sections: Int, Hashable, CaseIterable, CustomStringConvertible {
+        case designerHomes
+        
+        var description: String {
+            switch self {
+            case .designerHomes: return "designerHomes"
+            }
+        }
+    }
 
     let sections = Bundle.main.decode([Section].self, from: "realestate.json")
     var collectionView: UICollectionView!
@@ -108,7 +118,6 @@ class ExploreViewController: UIViewController {
     fileprivate func setupCollectionView() {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCompositionalLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .systemBackground
         view.addSubview(collectionView)
