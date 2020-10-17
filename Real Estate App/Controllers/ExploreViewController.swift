@@ -10,16 +10,6 @@ import UIKit
 
 class ExploreViewController: UIViewController {
     
-    enum Sections: Int, Hashable, CaseIterable, CustomStringConvertible {
-        case designerHomes
-        
-        var description: String {
-            switch self {
-            case .designerHomes: return "designerHomes"
-            }
-        }
-    }
-
     let sections = Bundle.main.decode([Section].self, from: "realestate.json")
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Apartment>?
